@@ -7,10 +7,9 @@ import {
     Nav,
     NavItem,
     NavLink,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem } from 'reactstrap';
+    } from 'reactstrap';
+
+import {NavLink as RRNavLink} from 'react-router-dom';
 
 export default class Example extends React.Component {
     constructor(props) {
@@ -26,6 +25,7 @@ export default class Example extends React.Component {
             isOpen: !this.state.isOpen
         });
     }
+
     render() {
         return (
             <div>
@@ -36,28 +36,14 @@ export default class Example extends React.Component {
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav className="ml-auto" navbar>
                                 <NavItem>
-                                    <NavLink href="/components/">Components</NavLink>
+                                    <NavLink exact tag={RRNavLink} to="/">Home</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+                                    <NavLink exact tag={RRNavLink} to="/sports">Sports</NavLink>
                                 </NavItem>
-                                <UncontrolledDropdown nav inNavbar>
-                                    <DropdownToggle nav caret>
-                                        Options
-                                    </DropdownToggle>
-                                    <DropdownMenu right>
-                                        <DropdownItem>
-                                            Option 1
-                                        </DropdownItem>
-                                        <DropdownItem>
-                                            Option 2
-                                        </DropdownItem>
-                                        <DropdownItem divider />
-                                        <DropdownItem>
-                                            Reset
-                                        </DropdownItem>
-                                    </DropdownMenu>
-                                </UncontrolledDropdown>
+                                <NavItem>
+                                    <NavLink exact tag={RRNavLink} to="/casino">Casino</NavLink>
+                                </NavItem>
                             </Nav>
                         </Collapse>
                     </div>
