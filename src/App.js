@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Header from "./components/Header";
 
 const Index = () => (
-    <h2>Home</h2>
+    <h2>Test</h2>
 )
 const About = () => (
     <h2>About</h2>
