@@ -1,0 +1,12 @@
+//
+// Base styles
+//
+.card {
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.0125);
+}
+
+.card-title {
+    background-color: theme-color("light");
+    padding: 0.5rem $grid-gutter-width;
+    color: theme-color("white");
+}

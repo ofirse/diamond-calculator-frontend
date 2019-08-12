@@ -9,6 +9,8 @@ import {
     NavLink,
     } from 'reactstrap';
 
+import { ReactComponent as Logo } from '../assets/img/logo.svg';
+
 import {NavLink as RRNavLink} from 'react-router-dom';
 
 export default class Example extends React.Component {
@@ -29,9 +31,11 @@ export default class Example extends React.Component {
     render() {
         return (
             <div>
-                <Navbar color="light" light expand="md">
+                <Navbar color="dark" dark expand="md">
                     <div className="container">
-                        <NavbarBrand href="/">reactstrap</NavbarBrand>
+                        <NavbarBrand href="/">
+                            <Logo width="166px"/>
+                        </NavbarBrand>
                         <NavbarToggler onClick={this.toggle} />
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav className="ml-auto" navbar>

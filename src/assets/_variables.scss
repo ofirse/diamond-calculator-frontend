@@ -1,1 +1,31 @@
-$body-bg: #e4e4e4;
+$body-bg:                   #cdd8e4;
+
+// Theme Colors Overrides
+$theme-colors: (
+    "white":                #ffffff,
+    "black":                #000000,
+    "primary":              #2574b4,
+    "secondary":            #5df24c,
+    "warning":              #fadf00,
+    "danger":               #f62b00,
+    "light":                #3f4f61,
+    "medium":               #344558,
+    "dark":                 #263140,
+);
+
+$grid-gutter-width:         12px;
+
+// Navbar
+$navbar-light-brand-color:  #ffffff;
+$navbar-light-color:        rgba(255,255,255,0.7);
+$navbar-light-active-color: #ffffff;
+$navbar-padding-y:          0;
+$navbar-nav-link-padding-x:  1rem;
+
+
+// Card
+
+$card-border-width:         1px;
+$card-border-color:         #c6d0dc;
+$card-border-radius:        0;
+$card-bg:                   #f1f1f1;
