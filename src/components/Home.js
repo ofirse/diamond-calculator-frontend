@@ -1,8 +1,5 @@
 import React from 'react';
-
-import { Card, CardText, CardBody,
-    CardTitle, CardSubtitle, Button } from 'reactstrap';
-
+import { Card, CardText, CardBody, CardTitle, CardSubtitle, Button} from 'reactstrap';
 import AlertMessage from "./common/AlertMessage";
 import EventsList from "./common/EventsList";
 
@@ -114,4 +111,6 @@ export default class Home extends React.Component {
             </div>
         </div>
     </div>
+
+
 }

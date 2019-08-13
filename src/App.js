@@ -23,7 +23,7 @@ const AppRouter = () => {
             <div>
                 <Header/>
                 <Route path="/" exact component={HomeLayout} />
-                <Route path="/sport/" component={SportsLayout} />
+                <Route path="/sports/" component={SportsLayout} />
                 <Route path="/casino/" component={CasinoLayout} />
             </div>
         </Router>
