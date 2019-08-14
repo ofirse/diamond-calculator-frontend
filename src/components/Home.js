@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, CardText, CardBody, CardTitle, CardSubtitle, Button} from 'reactstrap';
 import AlertMessage from "./common/AlertMessage";
 import EventsList from "./common/EventsList";
+import HomeList from "./common/HomeList";
 
 export default class Home extends React.Component {
     constructor(props) {
@@ -102,9 +103,7 @@ export default class Home extends React.Component {
                 <Card>
                     <CardTitle>Card title</CardTitle>
                     <CardBody>
-                        <CardSubtitle>Card subtitle</CardSubtitle>
-                        <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                        <Button color="primary">Button</Button>
+                        <HomeList/>
                     </CardBody>
                 </Card>
 

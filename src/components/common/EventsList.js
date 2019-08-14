@@ -19,6 +19,6 @@ export default class EventsList extends React.Component {
 }
 
 EventsList.propTypes = {
-    events: PropTypes.array,
+    events: PropTypes.array
 };
 
