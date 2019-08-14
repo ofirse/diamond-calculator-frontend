@@ -32,7 +32,7 @@ export default class Home extends React.Component {
         }
     };
 
-    renderCompetitions()
+    getCompetitionsList()
     {
         const listItems = this.state.competitions.map((game, index) =>
             <li className="list-group-item" key={index}>
@@ -45,7 +45,7 @@ export default class Home extends React.Component {
     render = () =>
     <div className="container">
         <ul className="list-group ">
-        {this.renderCompetitions()}
+        {this.getCompetitionsList()}
         </ul>
     </div>
 

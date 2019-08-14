@@ -101,7 +101,7 @@ export default class Home extends React.Component {
             </div>
             <div className="col-sm-8 mt-3 mt-md-0">
                 <Card>
-                    <CardTitle>Card title</CardTitle>
+                    <CardTitle>Competitions</CardTitle>
                     <CardBody>
                         <HomeList/>
                     </CardBody>
