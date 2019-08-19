@@ -1,0 +1,15 @@
+.country-title {
+    padding: 0.5rem;
+    border-bottom: 1px solid theme-color("dark");
+    color: theme-color("white");
+    background-color: theme-color("medium");
+    cursor: pointer;
+    &:hover {
+        background-color: lighten(theme-color("medium"), 2%);
+    }
+}
+.country-content {
+    padding: 0.5rem;
+    color: theme-color("white");
+    background-color: theme-color("light");
+}

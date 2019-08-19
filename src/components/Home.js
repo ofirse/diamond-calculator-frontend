@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardText, CardBody, CardTitle, CardSubtitle, Button} from 'reactstrap';
 import AlertMessage from "./common/AlertMessage";
 import EventsList from "./common/EventsList";
-import HomeList from "./common/HomeList";
+import CountriesList from "./common/CountriesList";
 
 export default class Home extends React.Component {
     constructor(props) {
@@ -101,10 +101,8 @@ export default class Home extends React.Component {
             </div>
             <div className="col-sm-8 mt-3 mt-md-0">
                 <Card>
-                    <CardTitle>Competitions</CardTitle>
-                    <CardBody>
-                        <HomeList/>
-                    </CardBody>
+                    <CardTitle className="mb-0">Competitions</CardTitle>
+                        <CountriesList/>
                 </Card>
 
             </div>
