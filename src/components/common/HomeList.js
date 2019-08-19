@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import constants from "../../constants";
-import League from "./League";
 
 export default class Home extends React.Component {
     constructor(props) {

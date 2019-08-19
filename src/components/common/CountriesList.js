@@ -8,7 +8,8 @@ export default class CountriesList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            countries: []
+            countries: [],
+            isLoading: false
         }
     }
     componentDidMount = () => {
@@ -17,6 +18,9 @@ export default class CountriesList extends React.Component {
 
     getCountries = async () => {
         try {
+            this.setState({
+                isLoading: true
+            });
             const response = await axios.get('https://apiv2.apifootball.com/', {
                 params: {
                     action: 'get_countries',
@@ -25,10 +29,14 @@ export default class CountriesList extends React.Component {
             });
             console.log(response);
             this.setState({
-                countries: response.data
+                countries: response.data,
+                isLoading: false
             })
         } catch (error) {
             console.error(error);
+            this.setState({
+                isLoading: false
+            })
         }
     };
 
@@ -41,8 +49,8 @@ export default class CountriesList extends React.Component {
     }
 
     render = () =>
-        <>
+        <div className={this.state.isLoading ? 'view-loader' : ''}>
             {this.getCountriesList()}
-        </>
+        </div>
 
 }

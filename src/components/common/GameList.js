@@ -1,12 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-    Button,
-    Card,
-    CardBody,
-    Collapse,
-} from "reactstrap";
-
 import League from './League';
 
 export default class GameList extends React.Component {
@@ -24,7 +17,7 @@ export default class GameList extends React.Component {
 
     render = () =>
         <ul className="list-group mt-3">
-            {this.getGamesList()}
+            {/*{this.getGamesList()}*/}
         </ul>
 }
 

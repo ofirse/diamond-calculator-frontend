@@ -1,47 +1,80 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-    Button,
-    Card,
-    CardBody,
-    Collapse,
-} from "reactstrap";
+import axios from "axios";
+import constants from "../../constants";
+import Team from "./Team";
+import {Collapse} from "reactstrap";
 
 export default class League extends React.Component {
-
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            isOpen: false
+            collapse: false,
+            isLoading: false,
+            isLoaded: false,
+            teams: []
         }
     }
 
-    toggle = ev => {
-        this.setState({
-            isOpen: !this.state.isOpen
-        })
+    getTeams = async () => {
+        try {
+            this.setState({
+                isLoading: true
+            });
+            const response = await axios.get('https://apiv2.apifootball.com/', {
+                params: {
+                    action: 'get_teams',
+                    league_id: this.props.leagueId,
+                    APIkey: constants.apiKey
+                }
+            });
+            console.log(response);
+            this.setState({
+                teams: response.data,
+                isLoading: false,
+                isLoaded: true,
+                collapse: !this.state.collapse
+            })
+        } catch (error) {
+            console.error(error);
+            this.setState({
+                isLoading: false
+            });
+        }
     };
-    componentDidMount() {
-        this.setState({
-            isOpen: this.props.isOpen
-        })
+
+    toggle = () => {
+        console.log(this.props.leagueId)
+        if(!this.state.isLoaded){
+            this.getTeams();
+        }else{
+            this.setState(state => ({
+                collapse: !state.collapse
+            }));
+        }
+
+    };
+
+    getTeamsList = () => {
+        if( this.state.teams.length) {
+            const teamsList = this.state.teams.map((team, index) =>
+                <Team key={index} teamName={team.team_name} teamBadge={team.team_badge} players={team.players} teamKey={team.team_key}/>
+            );
+            return teamsList;
+        }
+        return null;
     }
 
-    render = () =>
-        <li className="list-group-item">
-            <div>
-                <Button color="primary" onClick={this.toggle} style={{ marginBottom: '1rem' }}>{this.props.title}</Button>
-                <Collapse isOpen={this.state.isOpen}>
-                    <Card>
-                        <CardBody>
-                            starts: {this.props.time}
-                        </CardBody>
-                    </Card>
-                </Collapse>
-            </div>
-        </li>
-}
 
+    render = () =>
+        <>
+            <div onClick={this.toggle} className={"league-title " + (this.state.isLoading ? 'loader-circle-box-content loader-white loader-center' : '')}>{this.props.leagueName}</div>
+            <Collapse isOpen={this.state.collapse} className="league-content">
+                {this.getTeamsList()}
+            </Collapse>
+        </>
+}
 League.propTypes = {
-    time: PropTypes.string
+    leagueName: PropTypes.string,
+    leagueId: PropTypes.string
 };

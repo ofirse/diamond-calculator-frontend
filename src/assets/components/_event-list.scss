@@ -8,8 +8,23 @@
         background-color: lighten(theme-color("medium"), 2%);
     }
 }
-.country-content {
-    padding: 0.5rem;
+
+.league-title {
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid theme-color("dark");
     color: theme-color("white");
     background-color: theme-color("light");
+    cursor: pointer;
+    &:hover {
+        background-color: lighten(theme-color("light"), 2%);
+    }
+}
+.league-content {
+    color: theme-color("white");
+    background-color:  lighten(theme-color("light"), 7%);
+}
+
+.team-title {
+    padding: 0.5rem 2rem;
+    border-bottom: 1px solid theme-color("medium");
 }
