@@ -12,7 +12,8 @@ export default class Country extends React.Component {
             collapse: false,
             isLoading: false,
             isLoaded: false,
-            leagues: []
+            leagues: [],
+            filteredLeagues: []
         }
     }
 
@@ -31,6 +32,7 @@ export default class Country extends React.Component {
             console.log(response);
             this.setState({
                 leagues: response.data,
+                filteredLeagues: response.data,
                 isLoading: false,
                 isLoaded: true,
                 collapse: !this.state.collapse
@@ -45,9 +47,9 @@ export default class Country extends React.Component {
 
     toggle = () => {
         console.log(this.props.countryId)
-        if(!this.state.isLoaded){
+        if (!this.state.isLoaded) {
             this.getLeagues();
-        }else{
+        } else {
             this.setState(state => ({
                 collapse: !state.collapse
             }));
@@ -55,21 +57,48 @@ export default class Country extends React.Component {
 
     };
 
-    getLeaguesList()
-    {
-        const leaguesList = this.state.leagues.map((league, index) =>
+    getLeaguesList() {
+        const leaguesList = this.state.filteredLeagues.map((league, index) =>
             <League key={index} leagueName={league.league_name} leagueId={league.league_id}/>
         );
         return leaguesList;
     }
 
+    searchInputChange = (e) => {
+        const inputValue = e.target.value.toLocaleLowerCase();
+        let filteredLeagues = this.state.leagues.filter((league) => {
+            return league.league_name.toLocaleLowerCase().indexOf(inputValue) != -1
+        });
+        if(!inputValue){
+            filteredLeagues = this.state.leagues
+        }
+        this.setState({
+            filteredLeagues
+        })
+    };
 
     render = () =>
         <>
-        <div onClick={this.toggle} className={"country-title " + (this.state.isLoading ? 'loader-circle-box-content loader-white loader-center' : '')}>{this.props.countryName}</div>
-        <Collapse isOpen={this.state.collapse} className="country-content">
-            {this.getLeaguesList()}
-        </Collapse>
+            <div onClick={this.toggle}
+                 className={"country-title " + (this.state.isLoading ? 'loader-circle-box-content loader-white loader-center' : '')}>{this.props.countryName}</div>
+            <Collapse isOpen={this.state.collapse} className="country-content">
+                <div className="country-header p-3">
+                    <div className="input-group">
+                        <input type="text"
+                               className="form-control"
+                               placeholder="Search"
+                               aria-label="Search"
+                               onChange={this.searchInputChange}
+                               aria-describedby="search-field"/>
+                        <div className="input-group-append">
+                            <span className="input-group-text" id="search-field">
+                                <i className="fa fa-search"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                {this.getLeaguesList()}
+            </Collapse>
         </>
 }
 Country.propTypes = {

@@ -12,7 +12,8 @@ export default class League extends React.Component {
             collapse: false,
             isLoading: false,
             isLoaded: false,
-            teams: []
+            teams: [],
+            filteredTeams: []
         }
     }
 
@@ -31,6 +32,7 @@ export default class League extends React.Component {
             console.log(response);
             this.setState({
                 teams: response.data,
+                filteredTeams: response.data,
                 isLoading: false,
                 isLoaded: true,
                 collapse: !this.state.collapse
@@ -45,31 +47,78 @@ export default class League extends React.Component {
 
     toggle = () => {
         console.log(this.props.leagueId)
-        if(!this.state.isLoaded){
+        if(!this.state.isLoaded) {
             this.getTeams();
-        }else{
+        }
+        else{
             this.setState(state => ({
                 collapse: !state.collapse
             }));
         }
-
     };
 
     getTeamsList = () => {
         if( this.state.teams.length) {
-            const teamsList = this.state.teams.map((team, index) =>
-                <Team key={index} teamName={team.team_name} teamBadge={team.team_badge} players={team.players} teamKey={team.team_key}/>
+            if(!this.state.filteredTeams[0].filteredPlayers) {
+                this.state.filteredTeams.map((team) => {
+                    team.filteredPlayers = team.players;
+                });
+            }
+
+            const teamsList = this.state.filteredTeams.map((team, index) =>
+                <Team key={index}
+                      teamName={team.team_name}
+                      teamBadge={team.team_badge}
+                      players={team.filteredPlayers}
+                      teamKey={team.team_key}/>
             );
             return teamsList;
         }
         return null;
-    }
+    };
 
+    filterPlayers = (team, inputValue) => {
+      let filteredPlayers = team.players.filter((player) => {
+          return player.player_name.toLocaleLowerCase().indexOf(inputValue) != -1;
+      });
+      return filteredPlayers;
+    };
+
+    searchInputChange = (e) => {
+        const inputValue = e.target.value.toLocaleLowerCase();
+        let filteredTeams = this.state.teams.filter((team) => {
+            const filteredPlayers = this.filterPlayers(team, inputValue);
+            team.filteredPlayers = filteredPlayers;
+            return filteredPlayers.length != 0;
+        });
+
+        if(!inputValue){
+            filteredTeams = this.state.teams;
+        }
+        this.setState({
+            filteredTeams
+        });
+    };
 
     render = () =>
         <>
             <div onClick={this.toggle} className={"league-title " + (this.state.isLoading ? 'loader-circle-box-content loader-white loader-center' : '')}>{this.props.leagueName}</div>
             <Collapse isOpen={this.state.collapse} className="league-content">
+                <div className="league-header p-3">
+                    <div className="input-group">
+                        <input type="text"
+                               className="form-control"
+                               placeholder="Search"
+                               aria-label="Search"
+                               onChange={this.searchInputChange}
+                               aria-describedby="search-field"/>
+                        <div className="input-group-append">
+                            <span className="input-group-text" id="search-field">
+                                <i className="fa fa-search"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
                 {this.getTeamsList()}
             </Collapse>
         </>
