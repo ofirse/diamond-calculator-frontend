@@ -5,7 +5,7 @@ import React from 'react';
 
 class FavoritesContainer extends React.Component {
     getPlayers = () => {
-        const playersList = this.props.FavoritePlayers.map((player, index) =>
+        const playersList = this.props.favoritePlayers.map((player, index) =>
             <div key={index} className="d-flex justify-content-between">
                 <div className="d-flex align-items-center">
                     {player.player_name}
@@ -25,7 +25,7 @@ class FavoritesContainer extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        FavoritePlayers: state
+        favoritePlayers: state.favoritePlayers
     };
 };
 const mapDispatchToProps = (dispatch) => {

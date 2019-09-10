@@ -62,12 +62,12 @@ Team.propTypes = {
     players: PropTypes.array,
 };
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
     return {
-        FavoritePlayers: state
+        favoritePlayers: state.favoritePlayers
     };
 };
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
     return {
         addFavoritePlayer: (value) => dispatch(addFavoritePlayer(value)),
         removeFavoritePlayer: (value) => dispatch(removeFavoritePlayer(value)),
