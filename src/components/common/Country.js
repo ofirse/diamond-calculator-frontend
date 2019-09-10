@@ -67,7 +67,7 @@ export default class Country extends React.Component {
     searchInputChange = (e) => {
         const inputValue = e.target.value.toLocaleLowerCase();
         let filteredLeagues = this.state.leagues.filter((league) => {
-            return league.league_name.toLocaleLowerCase().indexOf(inputValue) != -1
+            return league.league_name.toLocaleLowerCase().indexOf(inputValue) !== -1
         });
         if(!inputValue){
             filteredLeagues = this.state.leagues

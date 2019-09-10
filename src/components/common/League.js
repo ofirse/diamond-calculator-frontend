@@ -79,7 +79,7 @@ export default class League extends React.Component {
 
     filterPlayers = (team, inputValue) => {
       let filteredPlayers = team.players.filter((player) => {
-          return player.player_name.toLocaleLowerCase().indexOf(inputValue) != -1;
+          return player.player_name.toLocaleLowerCase().indexOf(inputValue) !== -1;
       });
       return filteredPlayers;
     };
@@ -89,7 +89,7 @@ export default class League extends React.Component {
         let filteredTeams = this.state.teams.filter((team) => {
             const filteredPlayers = this.filterPlayers(team, inputValue);
             team.filteredPlayers = filteredPlayers;
-            return filteredPlayers.length != 0;
+            return filteredPlayers.length !== 0;
         });
 
         if(!inputValue){

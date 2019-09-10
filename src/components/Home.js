@@ -3,6 +3,7 @@ import { Card, CardText, CardBody, CardTitle, CardSubtitle, Button} from 'reacts
 import AlertMessage from "./common/AlertMessage";
 import EventsList from "./common/EventsList";
 import CountriesList from "./common/CountriesList";
+import FavoritesContainer from "../container/FavoritesContainer";
 
 export default class Home extends React.Component {
     constructor(props) {
@@ -26,11 +27,12 @@ export default class Home extends React.Component {
                 }
             ]
         }
-    }
+    };
+
     componentDidMount = () => {
         console.log('Home page did mount');
         this.setState({
-            cardTitle: 'New Events'
+            cardTitle: 'Favorite Players'
         })
     };
 
@@ -78,24 +80,42 @@ export default class Home extends React.Component {
         return null;
     };
 
+    createNewFavoritePlayer = () => {
+        const newFavoritePlayer = {
+            title: "New event", // player's name
+            //description: "Test description"
+        };
+
+        const FavoritePlayers = this.state.FavoritePlayers;
+        FavoritePlayers.push(newFavoritePlayer);
+        this.setState({
+            FavoritePlayers
+        })
+    };
+
     render = () =>
     <div className="container mt-5">
         <div className="row">
             <div className="col-sm-4">
+                {/*<Card>*/}
+                {/*    <CardTitle>{this.state.cardTitle}</CardTitle>*/}
+                {/*    <CardBody>*/}
+                {/*        <CardSubtitle>Card subtitle</CardSubtitle>*/}
+                {/*        <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>*/}
+                {/*        <div className="d-flex justify-content-between align-items-center">*/}
+                {/*            <Button color="success" onClick={this.incrementCount}>+</Button>*/}
+                {/*            <span className="badge badge-pill badge-success">{this.state.count}</span>*/}
+                {/*            <Button color="danger" onClick={this.decrementCount}>-</Button>*/}
+                {/*        </div>*/}
+                {/*        {this.getAlertMessage()}*/}
+
+                {/*        <EventsList events={this.state.events}/>*/}
+                {/*    </CardBody>*/}
+                {/*</Card>*/}
                 <Card>
                     <CardTitle>{this.state.cardTitle}</CardTitle>
                     <CardBody>
-
-                        <CardSubtitle>Card subtitle</CardSubtitle>
-                        <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                        <div className="d-flex justify-content-between align-items-center">
-                            <Button color="success" onClick={this.incrementCount}>+</Button>
-                            <span className="badge badge-pill badge-success">{this.state.count}</span>
-                            <Button color="danger" onClick={this.decrementCount}>-</Button>
-                        </div>
-                        {this.getAlertMessage()}
-
-                        <EventsList events={this.state.events}/>
+                        <FavoritesContainer/>
                     </CardBody>
                 </Card>
             </div>
@@ -104,7 +124,6 @@ export default class Home extends React.Component {
                     <CardTitle className="mb-0">Competitions</CardTitle>
                         <CountriesList/>
                 </Card>
-
             </div>
         </div>
     </div>
