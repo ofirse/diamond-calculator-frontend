@@ -16,7 +16,7 @@ class FavoritesContainer extends React.Component {
                         <i className="fa fa-futbol-o mr-2"></i>
                         {player.player_goals}
                     </div>
-                    <div className="mr-3">
+                    <div>
                         <i className="fa fa-square red-cards mr-2"></i>
                         {player.player_red_cards}
                     </div>
