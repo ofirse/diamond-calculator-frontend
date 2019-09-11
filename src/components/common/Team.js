@@ -13,7 +13,8 @@ class Team extends React.Component {
                 <td>
                     <div className="d-flex align-items-center">
                         <i className="fa fa-signal mr-3" onClick={ () => this.navigateToPlayerDetails(player)}/>
-                        <i className="fa fa-star mr-3" onClick={() => this.OnAddFavoritePlayer(player)}></i>
+                        <i className={"fa fa-star mr-3 toggle-favorite-player " + (this.props.favoritePlayers.indexOf(player) !== -1 ? 'active' : '')}
+                           onClick={(e) => this.toggleFavoritePlayer(player, e)}/>
                         {player.player_name}
                     </div>
                 </td>
@@ -24,9 +25,20 @@ class Team extends React.Component {
         return playersList;
     };
 
-    OnAddFavoritePlayer = (player) => {
-        this.props.addFavoritePlayer(player);
+    toggleFavoritePlayer = (player, e) => {
+        // Add a check if the player is already within the this.props.favoritePlayers
+        // add or remove from favoritePlayers
+
+        // Player not added to favorites so we add..
+        if(this.props.favoritePlayers.indexOf(player) == -1) {
+            this.props.addFavoritePlayer(player);
+        } else {
+            // Player was already added so we remove
+            const index = this.props.favoritePlayers.indexOf(player);
+            this.props.removeFavoritePlayer(index);
+        }
     };
+
 
     navigateToPlayerDetails = (player) => {
         console.log(player, this.props.history);
@@ -74,6 +86,12 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-
-
 export default connect(mapStateToProps, mapDispatchToProps)(Team);
+
+
+/*
+* 1. Create proper actions and reducers for Favorite Teams
+* 2. Import and map redux state and actions to props
+* 3. You have to add star next to the team name and add onClick handler and check for the active class of that icon
+* 4. You have to create a component like FavoritesContainer.js but for FavoritesTeams
+* */

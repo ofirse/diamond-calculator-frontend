@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Home from "./components/Home";
 import Sports from "./components/Sports";
 import Casino from "./components/Casino";
+import FavoritePlayers from "./components/FavoritePlayers";
 import Player from "./components/Player";
 
 
@@ -20,6 +21,9 @@ const CasinoLayout = props =>
 const PlayerLayout = props => {
     return <Player {...props} />
 }
+const FavoritePlayersLayout = props => {
+    return <FavoritePlayers {...props} />
+}
 
 const AppRouter = () => {
     return (
@@ -29,6 +33,7 @@ const AppRouter = () => {
                 <Route path="/" exact component={HomeLayout} />
                 <Route path="/sports/" component={SportsLayout} />
                 <Route path="/casino/" component={CasinoLayout} />
+                <Route path="/favoriteplayers/" component={FavoritePlayersLayout} />
                 <Route path="/player/:player_name" component={PlayerLayout}/>
             </div>
         </Router>

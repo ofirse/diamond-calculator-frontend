@@ -31,3 +31,9 @@
 .team-logo {
     width: 35px;
 }
+.toggle-favorite-player {
+    cursor: pointer;
+    &.active {
+        color: theme-color("warning");
+    }
+}

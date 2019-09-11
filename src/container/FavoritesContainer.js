@@ -20,6 +20,9 @@ class FavoritesContainer extends React.Component {
                         <i className="fa fa-square red-cards mr-2"></i>
                         {player.player_red_cards}
                     </div>
+                    <div>
+                        <i className="fa fa-ban remove-favorite-player ml-3" onClick={()=> this.props.removeFavoritePlayer(index)}></i>
+                    </div>
                 </div>
             </div>
         );

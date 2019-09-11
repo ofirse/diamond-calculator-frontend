@@ -7,12 +7,16 @@ const favoritePlayers = (state = [], action) => {
             return [...state, action.payload];
         }
         case types.REMOVE_FAVORITE_PLAYER: {
-           // return state - action.payload;
+           state.splice(action.payload, 1);
+           return [...state];
         }
 
         default: return state
     }
 };
+
+
+
 
 export default combineReducers({
     favoritePlayers

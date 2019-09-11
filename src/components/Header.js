@@ -48,6 +48,9 @@ export default class Example extends React.Component {
                                 <NavItem>
                                     <NavLink exact tag={RRNavLink} to="/casino">Casino</NavLink>
                                 </NavItem>
+                                <NavItem>
+                                    <NavLink exact tag={RRNavLink} to="/favoriteplayers">Favorite Players</NavLink>
+                                </NavItem>
                             </Nav>
                         </Collapse>
                     </div>
