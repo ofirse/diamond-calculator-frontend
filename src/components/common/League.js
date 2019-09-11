@@ -51,9 +51,9 @@ export default class League extends React.Component {
             this.getTeams();
         }
         else{
-            this.setState(state => ({
-                collapse: !state.collapse
-            }));
+            this.setState({
+                collapse: !this.state.collapse
+            });
         }
     };
 
