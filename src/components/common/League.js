@@ -4,8 +4,10 @@ import axios from "axios";
 import constants from "../../constants";
 import Team from "./Team";
 import {Collapse} from "reactstrap";
+import {connect} from "react-redux";
+import {addFavoriteTeam, removeFavoriteTeam} from '../../redux/actions';
 
-export default class League extends React.Component {
+class League extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -127,3 +129,18 @@ League.propTypes = {
     leagueName: PropTypes.string,
     leagueId: PropTypes.string
 };
+
+const mapStateToProps = (state) => {
+    return {
+        favoriteTeams: state.favoriteTeams
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addFavoriteTeam: (value) => dispatch(addFavoriteTeam(value)),
+        removeFavoriteTeam: (value) => dispatch(removeFavoriteTeam(value)),
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(League);

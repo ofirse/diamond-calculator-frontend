@@ -13,3 +13,17 @@ export function removeFavoritePlayer(index) {
         payload: index
     }
 };
+
+export function addFavoriteTeam(team) {
+    return {
+        type: types.ADD_FAVORITE_TEAM,
+        payload: team
+    }
+};
+
+export function removeFavoriteTeam(index) {
+    return {
+        type: types.REMOVE_FAVORITE_TEAM,
+        payload: index
+    }
+};

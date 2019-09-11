@@ -90,8 +90,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(Team);
 
 
 /*
-* 1. Create proper actions and reducers for Favorite Teams
-* 2. Import and map redux state and actions to props
+* 1. Create proper actions and reducers for Favorite Teams -- V
+* 2. Import and map redux state and actions to props -- V
 * 3. You have to add star next to the team name and add onClick handler and check for the active class of that icon
 * 4. You have to create a component like FavoritesContainer.js but for FavoritesTeams
 * */
