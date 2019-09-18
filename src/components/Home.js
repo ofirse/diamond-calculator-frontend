@@ -1,9 +1,9 @@
 import React from 'react';
 import { Card, CardText, CardBody, CardTitle, CardSubtitle, Button} from 'reactstrap';
 import AlertMessage from "./common/AlertMessage";
-import EventsList from "./common/EventsList";
 import CountriesList from "./common/CountriesList";
 import FavoritesContainer from "../container/FavoritesContainer";
+import FavoriteTeamsContainer from "../container/FavoriteTeamsContainer";
 
 export default class Home extends React.Component {
     constructor(props) {
@@ -96,7 +96,7 @@ export default class Home extends React.Component {
     render = () =>
     <div className="container mt-5">
         <div className="row">
-            <div className="col-sm-4">
+            <div className="col-sm-4 mb-3">
                 {/*<Card>*/}
                 {/*    <CardTitle>{this.state.cardTitle}</CardTitle>*/}
                 {/*    <CardBody>*/}
@@ -119,6 +119,14 @@ export default class Home extends React.Component {
                     </CardBody>
                 </Card>
             </div>
+            <div className="col-sm-4 mb-3">
+                <Card>
+                    <CardTitle>Favorite Teams</CardTitle>
+                    <CardBody>
+                        <FavoriteTeamsContainer/>
+                    </CardBody>
+                </Card>
+            </div>
             <div className="col-sm-8 mt-3 mt-md-0">
                 <Card>
                     <CardTitle className="mb-0">Competitions</CardTitle>
@@ -127,6 +135,4 @@ export default class Home extends React.Component {
             </div>
         </div>
     </div>
-
-
 }

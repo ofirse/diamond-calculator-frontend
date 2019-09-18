@@ -58,10 +58,15 @@ export default class Country extends React.Component {
     };
 
     getLeaguesList() {
-        const leaguesList = this.state.filteredLeagues.map((league, index) =>
-            <League key={index} leagueName={league.league_name} leagueId={league.league_id}/>
-        );
-        return leaguesList;
+        if(this.state.filteredLeagues.length > 0) {
+            const leaguesList = this.state.filteredLeagues.map((league, index) =>
+                <League key={index} leagueName={league.league_name} leagueId={league.league_id}/>
+            );
+
+            return leaguesList;
+        }
+
+        return null;
     }
 
     searchInputChange = (e) => {

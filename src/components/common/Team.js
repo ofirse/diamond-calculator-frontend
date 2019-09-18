@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {addFavoritePlayer, removeFavoritePlayer } from '../../redux/actions';
+import {addFavoritePlayer, addFavoriteTeam, removeFavoritePlayer, removeFavoriteTeam} from '../../redux/actions';
 
 class Team extends React.Component {
     getPlayers = () => {
@@ -14,7 +14,7 @@ class Team extends React.Component {
                     <div className="d-flex align-items-center">
                         <i className="fa fa-signal mr-3" onClick={ () => this.navigateToPlayerDetails(player)}/>
                         <i className={"fa fa-star mr-3 toggle-favorite-player " + (this.props.favoritePlayers.indexOf(player) !== -1 ? 'active' : '')}
-                           onClick={(e) => this.toggleFavoritePlayer(player, e)}/>
+                           onClick={(e) => this.toggleFavoritePlayer(player)}/>
                         {player.player_name}
                     </div>
                 </td>
@@ -25,17 +25,24 @@ class Team extends React.Component {
         return playersList;
     };
 
-    toggleFavoritePlayer = (player, e) => {
-        // Add a check if the player is already within the this.props.favoritePlayers
-        // add or remove from favoritePlayers
-
+    toggleFavoritePlayer = (player) => {
         // Player not added to favorites so we add..
-        if(this.props.favoritePlayers.indexOf(player) == -1) {
+        if(this.props.favoritePlayers.indexOf(player) === -1) {
             this.props.addFavoritePlayer(player);
         } else {
             // Player was already added so we remove
             const index = this.props.favoritePlayers.indexOf(player);
             this.props.removeFavoritePlayer(index);
+        }
+    };
+
+    toggleFavoriteTeam = (team) => {
+        if(this.props.favoriteTeams.indexOf(team) === -1) {
+            this.props.addFavoriteTeam(team);
+        } else {
+            // Player was already added so we remove
+            const index = this.props.favoriteTeams.indexOf(team);
+            this.props.removeFavoriteTeam(index);
         }
     };
 
@@ -49,6 +56,8 @@ class Team extends React.Component {
     render = () =>
         <>
             <div className="team-header p-3">
+                <i className={"fa fa-star mr-3 toggle-favorite-player " + (this.props.favoriteTeams.indexOf(this.props.team) !== -1 ? 'active' : '')}
+                   onClick={(e) => this.toggleFavoriteTeam(this.props.team)}/>
                 <img src={this.props.teamBadge} alt="team Badge" className="team-logo mr-3"/>
                 {this.props.teamName}
             </div>
@@ -68,6 +77,7 @@ class Team extends React.Component {
 };
 
 Team.propTypes = {
+    team: PropTypes.object,
     teamName: PropTypes.string,
     teamKey: PropTypes.string,
     teamBadge: PropTypes.string,
@@ -76,13 +86,16 @@ Team.propTypes = {
 
 const mapStateToProps = (state) => {
     return {
-        favoritePlayers: state.favoritePlayers
+        favoritePlayers: state.favoritePlayers,
+        favoriteTeams: state.favoriteTeams
     };
 };
 const mapDispatchToProps = (dispatch) => {
     return {
         addFavoritePlayer: (value) => dispatch(addFavoritePlayer(value)),
         removeFavoritePlayer: (value) => dispatch(removeFavoritePlayer(value)),
+        addFavoriteTeam: (value) => dispatch(addFavoriteTeam(value)),
+        removeFavoriteTeam: (value) => dispatch(removeFavoriteTeam(value))
     };
 };
 
@@ -92,6 +105,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(Team);
 /*
 * 1. Create proper actions and reducers for Favorite Teams -- V
 * 2. Import and map redux state and actions to props -- V
-* 3. You have to add star next to the team name and add onClick handler and check for the active class of that icon
-* 4. You have to create a component like FavoritesContainer.js but for FavoritesTeams
+* 3. You have to add star next to the team name and add onClick handler and check for the active class of that icon -- V
+* 4. You have to create a component like FavoritesContainer.js but for FavoritesTeams -- V
 * */

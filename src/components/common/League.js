@@ -7,7 +7,7 @@ import {Collapse} from "reactstrap";
 import {connect} from "react-redux";
 import {addFavoriteTeam, removeFavoriteTeam} from '../../redux/actions';
 
-class League extends React.Component {
+export default class League extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -69,6 +69,7 @@ class League extends React.Component {
 
             const teamsList = this.state.filteredTeams.map((team, index) =>
                 <Team key={index}
+                      team ={team}
                       teamName={team.team_name}
                       teamBadge={team.team_badge}
                       players={team.filteredPlayers}
@@ -129,18 +130,3 @@ League.propTypes = {
     leagueName: PropTypes.string,
     leagueId: PropTypes.string
 };
-
-const mapStateToProps = (state) => {
-    return {
-        favoriteTeams: state.favoriteTeams
-    };
-};
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        addFavoriteTeam: (value) => dispatch(addFavoriteTeam(value)),
-        removeFavoriteTeam: (value) => dispatch(removeFavoriteTeam(value)),
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(League);
