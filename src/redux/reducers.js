@@ -44,7 +44,12 @@ const userData = (state = {userLogged: false, email: ''}, action) => {
     }
 };
 
-const playerData = (state = {playerName: '', playerNumber: '', playerAge: '', playerCountry: ''}, action) => {
+const playerData = (state = {
+    playerName: '',
+    playerNumber: '',
+    playerAge: '',
+    playerCountry: ''
+}, action) => {
     switch (action.type) {
         case types.SET_PLAYER_DATA: {
             if(action.payload) {

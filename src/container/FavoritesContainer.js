@@ -1,9 +1,33 @@
 import { connect } from 'react-redux';
 import {addFavoritePlayer, removeFavoritePlayer } from '../redux/actions';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import Player from '../components/Player';
 
 import React from 'react';
 
 class FavoritesContainer extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            modalOpened: false,
+            selectedPLayerName: '',
+        };
+    }
+
+    toggleModal = () => {
+        this.setState( {
+            modalOpened: !this.state.modalOpened
+        });
+    }
+
+    setSelectedPlayerName = selectedPLayerName => {
+        this.setState({
+            modalOpened: true,
+            selectedPLayerName
+        })
+        console.log('selected', selectedPLayerName)
+    }
+
     getPlayers = () => {
         const playersList = this.props.favoritePlayers.map((player, index) =>
             <div key={index} className="d-flex justify-content-between border rounded py-1 px-3 mb-1 bg-white">
@@ -13,6 +37,7 @@ class FavoritesContainer extends React.Component {
                 </div>
                 <div className="d-flex">
                     <div className="mr-3">
+                        <i className="fa fa-signal mr-3" onClick={() => this.setSelectedPlayerName(player.player_name)}/>
                         <i className="fa fa-futbol-o mr-2"></i>
                         {player.player_goals}
                     </div>
@@ -32,6 +57,16 @@ class FavoritesContainer extends React.Component {
     render = () =>
         <>
             {this.getPlayers()}
+            <Modal isOpen={this.state.modalOpened} toggle={this.toggleModal}>
+                <ModalHeader toggle={this.toggleModal} charCode="Y">Player Statistics</ModalHeader>
+                <ModalBody>
+                    <Player playerName={this.state.selectedPLayerName}/>
+                </ModalBody>
+                <ModalFooter>
+                    <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
+                    <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+                </ModalFooter>
+            </Modal>
         </>
 };
 

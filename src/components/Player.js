@@ -7,6 +7,9 @@ import {Card, CardBody, CardTitle} from "reactstrap";
 import FavoritesContainer from "../container/FavoritesContainer";
 import FavoriteTeamsContainer from "../container/FavoriteTeamsContainer";
 import CountriesList from "./common/CountriesList";
+import PropTypes from 'prop-types';
+import GameList from "./common/GameList";
+
 
 class Player extends React.Component {
     componentDidMount = () => {
@@ -14,12 +17,11 @@ class Player extends React.Component {
     };
 
     getPlayerStats = async () => {
-        debugger
         try {
             const response = await axios.get('https://apiv2.apifootball.com/', {
                 params: {
                     action: 'get_players',
-                    player_name: this.props.match.params.player_name,
+                    player_name: this.props.playerName ? this.props.playerName : this.props.match.params.player_name,
                     APIkey: constants.apiKey
                 }
             });
@@ -47,7 +49,7 @@ class Player extends React.Component {
     render = () =>
         <div className="container mt-5">
             <Card>
-                <CardTitle>Player Information</CardTitle>
+                <CardTitle>Player Information {this.props.playerName}</CardTitle>
                 <CardBody>
                     {this.getPlayerData()}
                 </CardBody>
@@ -55,15 +57,19 @@ class Player extends React.Component {
         </div>
 }
 
-const mapStateToProps = (state) => {
+Player.propTypes = {
+    playerName: PropTypes.string
+};
+
+const mapStateToProps = state => {
     return {
         playerData: state.playerData,
     };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
     return {
-        setPlayerData: (value) => dispatch(setPlayerData(value)),
+        setPlayerData: value => dispatch(setPlayerData(value)),
     };
 };
 
