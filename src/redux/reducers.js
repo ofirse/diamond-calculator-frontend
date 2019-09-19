@@ -1,5 +1,5 @@
 import types from './types';
-import { combineReducers } from "redux";
+import {combineReducers} from "redux";
 
 const favoritePlayers = (state = [], action) => {
     switch (action.type) {
@@ -7,11 +7,12 @@ const favoritePlayers = (state = [], action) => {
             return [...state, action.payload];
         }
         case types.REMOVE_FAVORITE_PLAYER: {
-           state.splice(action.payload, 1);
-           return [...state];
+            state.splice(action.payload, 1);
+            return [...state];
         }
 
-        default: return state
+        default:
+            return state
     }
 };
 
@@ -25,11 +26,26 @@ const favoriteTeams = (state = [], action) => {
             return [...state];
         }
 
-        default: return state
+        default:
+            return state
+    }
+};
+
+const userData = (state = {userLogged: false, email: ''}, action) => {
+    switch (action.type) {
+        case types.SET_USER_LOGGED: {
+            return {...state, userLogged: action.payload};
+        }
+        case types.SET_USER_EMAIL: {
+            return {...state, email: action.payload};
+        }
+        default:
+            return state;
     }
 };
 
 export default combineReducers({
     favoritePlayers,
-    favoriteTeams
+    favoriteTeams,
+    userData
 });

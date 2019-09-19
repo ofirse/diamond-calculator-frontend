@@ -4,8 +4,6 @@ import axios from "axios";
 import constants from "../../constants";
 import Team from "./Team";
 import {Collapse} from "reactstrap";
-import {connect} from "react-redux";
-import {addFavoriteTeam, removeFavoriteTeam} from '../../redux/actions';
 
 export default class League extends React.Component {
     constructor(props) {

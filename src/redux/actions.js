@@ -27,3 +27,17 @@ export function removeFavoriteTeam(index) {
         payload: index
     }
 };
+
+export function setUserLogged(isUserLogged) {
+    return {
+        type: types.SET_USER_LOGGED,
+        payload: isUserLogged
+    }
+};
+
+export function setUserEmail(email) {
+    return {
+        type: types.SET_USER_EMAIL,
+        payload: email
+    }
+};
