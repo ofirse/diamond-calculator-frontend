@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {addFavoritePlayer, addFavoriteTeam, removeFavoritePlayer, removeFavoriteTeam} from '../../redux/actions';
+import { withRouter } from "react-router";
 
 class Team extends React.Component {
     getPlayers = () => {
@@ -82,6 +83,9 @@ Team.propTypes = {
     teamKey: PropTypes.string,
     teamBadge: PropTypes.string,
     players: PropTypes.array,
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => {
@@ -99,12 +103,6 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Team);
+const TeamWithRouter = withRouter(Team);
 
-
-/*
-* 1. Create proper actions and reducers for Favorite Teams -- V
-* 2. Import and map redux state and actions to props -- V
-* 3. You have to add star next to the team name and add onClick handler and check for the active class of that icon -- V
-* 4. You have to create a component like FavoritesContainer.js but for FavoritesTeams -- V
-* */
+export default connect(mapStateToProps, mapDispatchToProps)(TeamWithRouter);

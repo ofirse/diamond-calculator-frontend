@@ -46,13 +46,13 @@ class Login extends React.Component {
                     <CardTitle>Login</CardTitle>
                     <CardBody>
                         <Form >
-                            <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                                <Label for="exampleEmail" className="mr-sm-2">Email</Label>
-                                <Input type="email" name="email" id="exampleEmail" placeholder="something@idk.cool" onChange={this.onEmailChange} />
+                            <FormGroup className="my-2">
+                                <Label for="email" className="mr-sm-2">Email</Label>
+                                <Input type="email" name="email" id="email" placeholder="Enter your email" onChange={this.onEmailChange} />
                             </FormGroup>
-                            <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                                <Label for="examplePassword" className="mr-sm-2">Password</Label>
-                                <Input type="password" name="password" id="examplePassword" placeholder="don't tell!" onChange={this.onPasswordChange} />
+                            <FormGroup className="my-2">
+                                <Label for="password" className="mr-sm-2">Password</Label>
+                                <Input type="password" name="password" id="password" placeholder="Enter your password" onChange={this.onPasswordChange} />
                             </FormGroup>
                             <Button className="mt-2" onClick={this.onSubmit}>Submit</Button>
                         </Form>

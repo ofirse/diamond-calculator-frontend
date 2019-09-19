@@ -12,8 +12,7 @@ import {connect} from "react-redux";
 
 class Routers extends React.Component {
     getPage = () => {
-        debugger
-        if(this.props.userData.userLogged) {
+        if(!this.props.userData.userLogged) {
             return (
                 <div>
                     <Header/>
@@ -36,7 +35,7 @@ class Routers extends React.Component {
 
     render = () =>
         <Router>
-                {this.getPage()}
+            {this.getPage()}
         </Router>
 }
 

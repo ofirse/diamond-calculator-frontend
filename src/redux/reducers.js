@@ -44,8 +44,31 @@ const userData = (state = {userLogged: false, email: ''}, action) => {
     }
 };
 
+const playerData = (state = {playerName: '', playerNumber: '', playerAge: '', playerCountry: ''}, action) => {
+    switch (action.type) {
+        case types.SET_PLAYER_DATA: {
+            if(action.payload) {
+                return {
+                    ...state,
+                    playerName: action.payload.player_name,
+                    playerNumber: action.payload.player_number,
+                    playerAge: action.payload.player_age,
+                    playerCountry: action.payload.player_country
+                };
+            }
+            else {
+                return state;
+            }
+        }
+        default:
+            return state;
+    }
+};
+
+
 export default combineReducers({
     favoritePlayers,
     favoriteTeams,
-    userData
+    userData,
+    playerData
 });

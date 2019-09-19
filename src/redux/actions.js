@@ -41,3 +41,10 @@ export function setUserEmail(email) {
         payload: email
     }
 };
+
+export function setPlayerData(player) {
+    return {
+        type: types.SET_PLAYER_DATA,
+        payload: player
+    }
+};
