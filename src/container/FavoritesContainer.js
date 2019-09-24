@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import {addFavoritePlayer, removeFavoritePlayer } from '../redux/actions';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import {addFavoritePlayer, removeFavoritePlayer, sortFavoritePlayers } from '../redux/actions';
+import {Button, Modal, ModalHeader, ModalBody, ModalFooter, CardTitle} from 'reactstrap';
 import Player from '../components/Player';
 
 import React from 'react';
@@ -29,24 +29,24 @@ class FavoritesContainer extends React.Component {
     }
 
     getPlayers = () => {
-        const playersList = this.props.favoritePlayers.map((player, index) =>
+        const playersList = this.props.favoritePlayers.favoritePlayers.map((player, index) =>
             <div key={index} className="d-flex justify-content-between border rounded py-1 px-3 mb-1 bg-white">
                 <div className="d-flex align-items-center">
-                    <i className="fa fa-male mr-2"></i>
+                    <i className="fa fa-male mr-2"/>
                     {player.player_name}
                 </div>
                 <div className="d-flex">
                     <div className="mr-3">
                         <i className="fa fa-signal mr-3" onClick={() => this.setSelectedPlayerName(player.player_name)}/>
-                        <i className="fa fa-futbol-o mr-2"></i>
+                        <i className="fa fa-futbol-o mr-2"/>
                         {player.player_goals}
                     </div>
                     <div>
-                        <i className="fa fa-square red-cards mr-2"></i>
+                        <i className="fa fa-square red-cards mr-2"/>
                         {player.player_red_cards}
                     </div>
                     <div>
-                        <i className="fa fa-ban remove-favorite-player ml-3" onClick={()=> this.props.removeFavoritePlayer(index)}></i>
+                        <i className="fa fa-ban remove-favorite-player ml-3" onClick={()=> this.props.removeFavoritePlayer(index)}/>
                     </div>
                 </div>
             </div>
@@ -56,6 +56,7 @@ class FavoritesContainer extends React.Component {
 
     render = () =>
         <>
+            <button type="button" className="btn btn-primary btn-sm mb-3" disabled={this.props.favoritePlayers.favoritePlayers.length <= 0} onClick={this.props.sortFavoritePlayers}>Sort</button>
             {this.getPlayers()}
             <Modal isOpen={this.state.modalOpened} toggle={this.toggleModal}>
                 <ModalHeader toggle={this.toggleModal} charCode="Y">Player Statistics</ModalHeader>
@@ -79,6 +80,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         addFavoritePlayer: (value) => dispatch(addFavoritePlayer(value)),
         removeFavoritePlayer: (value) => dispatch(removeFavoritePlayer(value)),
+        sortFavoritePlayers: () => dispatch(sortFavoritePlayers()),
     };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(FavoritesContainer);

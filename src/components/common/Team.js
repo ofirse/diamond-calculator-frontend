@@ -5,16 +5,26 @@ import {addFavoritePlayer, addFavoriteTeam, removeFavoritePlayer, removeFavorite
 import { withRouter } from "react-router";
 
 class Team extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            currDirOfSort: "",
+            isGoalsChecked: false,
+            isRedCardsChecked: false,
+            filteredPlayers: this.props.players,
+        }
+    }
+
     getPlayers = () => {
         if(!this.props.players){
             return null;
         }
-        const playersList = this.props.players.map((player, index) =>
+        const playersList = this.state.filteredPlayers.map((player, index) =>
             <tr key={index}>
                 <td>
                     <div className="d-flex align-items-center">
                         <i className="fa fa-signal mr-3" onClick={ () => this.navigateToPlayerDetails(player)}/>
-                        <i className={"fa fa-star mr-3 toggle-favorite-player " + (this.props.favoritePlayers.indexOf(player) !== -1 ? 'active' : '')}
+                        <i className={"fa fa-star mr-3 toggle-favorite-player " + (this.props.favoritePlayers.favoritePlayers.indexOf(player) !== -1 ? 'active' : '')}
                            onClick={(e) => this.toggleFavoritePlayer(player)}/>
                         {player.player_name}
                     </div>
@@ -28,11 +38,11 @@ class Team extends React.Component {
 
     toggleFavoritePlayer = (player) => {
         // Player not added to favorites so we add..
-        if(this.props.favoritePlayers.indexOf(player) === -1) {
+        if(this.props.favoritePlayers.favoritePlayers.indexOf(player) === -1) {
             this.props.addFavoritePlayer(player);
         } else {
             // Player was already added so we remove
-            const index = this.props.favoritePlayers.indexOf(player);
+            const index = this.props.favoritePlayers.favoritePlayers.indexOf(player);
             this.props.removeFavoritePlayer(index);
         }
     };
@@ -54,6 +64,78 @@ class Team extends React.Component {
         this.props.history.push(`/player/${playerName}`);
     };
 
+    onSort = () => {
+        const players = this.state.filteredPlayers;
+        if(this.state.currDirOfSort === "AToz") {
+            players.reverse();
+            this.setState({ currDirOfSort: "zToA" });
+        }
+        else {
+            players.sort(function (playerA, playerB) {
+                const nameA = playerA.player_name.toUpperCase(); // ignore upper and lowercase
+                const nameB = playerB.player_name.toUpperCase(); // ignore upper and lowercase
+                if (nameA < nameB) {
+                    return -1;
+                }
+                if (nameA > nameB) {
+                    return 1;
+                }
+                // names must be equal
+                return 0;
+            });
+
+            this.setState({ currDirOfSort: "AToz" });
+        }
+    };
+
+    //TODO
+    onCheckGoals = () => {
+        if(this.state.isGoalsChecked) {
+            this.setState({
+                isGoalsChecked: false,
+                filteredPlayers: this.props.players
+            });
+            if(this.state.isRedCardsChecked) {
+                this.filterByRedCards();
+            }
+        }
+        else {
+            this.filterByGoals();
+        }
+    };
+
+    filterByGoals = () => {
+        const filteredPlayers = this.state.filteredPlayers.filter(player =>
+            player.player_goals > 0
+        );
+        this.setState({ isGoalsChecked: true,
+            filteredPlayers});
+    };
+
+    //TODO
+    onCheckRedCards = () => {
+        if(this.state.isRedCardsChecked) {
+            this.setState({
+                isRedCardsChecked: false,
+                filteredPlayers: this.props.players
+            });
+            if(this.state.isGoalsChecked) {
+                this.filterByGoals();
+            }
+        }
+        else {
+           this.filterByRedCards();
+        }
+    };
+
+    filterByRedCards = () => {
+        const filteredPlayers = this.state.filteredPlayers.filter(player =>
+            player.player_red_cards > 0
+        );
+        this.setState({ isRedCardsChecked: true,
+            filteredPlayers});
+    };
+
     render = () =>
         <>
             <div className="team-header p-3">
@@ -65,9 +147,9 @@ class Team extends React.Component {
             <table className="table table-striped table-dark">
                 <thead>
                 <tr>
-                    <th>Player</th>
-                    <th>Goals</th>
-                    <th>Red Cards</th>
+                    <th>Player <button type="button" className="btn btn-primary btn-sm" onClick={this.onSort}>Sort</button></th>
+                    <th>Goals  <input type="checkbox" onClick={this.onCheckGoals}/></th>
+                    <th>Red Cards  <input type="checkbox" onClick={this.onCheckRedCards}/></th>
                 </tr>
                 </thead>
                 <tbody>

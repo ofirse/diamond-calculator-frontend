@@ -1,14 +1,35 @@
 import types from './types';
 import {combineReducers} from "redux";
 
-const favoritePlayers = (state = [], action) => {
+const favoritePlayers = (state = {favoritePlayers: [], isAToZ: false}, action) => {
     switch (action.type) {
         case types.ADD_FAVORITE_PLAYER: {
-            return [...state, action.payload];
+            return {favoritePlayers: [...state.favoritePlayers, action.payload]};
         }
         case types.REMOVE_FAVORITE_PLAYER: {
-            state.splice(action.payload, 1);
-            return [...state];
+            state.favoritePlayers.splice(action.payload, 1);
+            return {favoritePlayers: [...state.favoritePlayers]};
+        }
+        case types.SORT_FAVORITE_PLAYERS: {
+            if(state.isAToZ) {
+                state.favoritePlayers.reverse();
+                return {...state, isAToZ: false};
+            }
+            else {
+                state.favoritePlayers.sort(function (playerA, playerB) {
+                    const nameA = playerA.player_name.toUpperCase(); // ignore upper and lowercase
+                    const nameB = playerB.player_name.toUpperCase(); // ignore upper and lowercase
+                    if (nameA < nameB) {
+                        return -1;
+                    }
+                    if (nameA > nameB) {
+                        return 1;
+                    }
+                    // names must be equal
+                    return 0;
+                });
+                return {...state, isAToZ: true};
+            }
         }
 
         default:
@@ -69,7 +90,6 @@ const playerData = (state = {
             return state;
     }
 };
-
 
 export default combineReducers({
     favoritePlayers,

@@ -4,12 +4,7 @@ import constants from "../constants";
 import {setPlayerData} from "../redux/actions";
 import {connect} from "react-redux";
 import {Card, CardBody, CardTitle} from "reactstrap";
-import FavoritesContainer from "../container/FavoritesContainer";
-import FavoriteTeamsContainer from "../container/FavoriteTeamsContainer";
-import CountriesList from "./common/CountriesList";
 import PropTypes from 'prop-types';
-import GameList from "./common/GameList";
-
 
 class Player extends React.Component {
     componentDidMount = () => {

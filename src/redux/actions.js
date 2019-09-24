@@ -48,3 +48,9 @@ export function setPlayerData(player) {
         payload: player
     }
 };
+
+export function sortFavoritePlayers() {
+    return {
+        type: types.SORT_FAVORITE_PLAYERS,
+    }
+};
