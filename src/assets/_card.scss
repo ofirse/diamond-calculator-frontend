@@ -3,11 +3,14 @@
 //
 
 .card {
+    padding: 0;
+    margin: 0;
     box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.05);
 }
 
 .card-title {
     padding: 0.5rem $grid-gutter-width;
-    background-color: theme-color("primary");
-    color: theme-color("white");
+    background-color: theme-color("white");
+    color: theme-color("primary");
+    font-weight: bold;
 }

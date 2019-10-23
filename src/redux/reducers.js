@@ -1,18 +1,29 @@
 import types from './types';
 import {combineReducers} from "redux";
 
-const favoritePlayers = (state = {favoritePlayers: [], isAToZ: false}, action) => {
+const favoritePlayers = (state = {favoritePlayers: [], filteredFavoritePlayers: [], isAToZ: false, isGoalsChecked: false, isRedCardsChecked: false}, action) => {
     switch (action.type) {
         case types.ADD_FAVORITE_PLAYER: {
-            return {favoritePlayers: [...state.favoritePlayers, action.payload]};
+            return {
+                favoritePlayers: [...state.favoritePlayers, action.payload],
+                filteredFavoritePlayers: [...state.favoritePlayers, action.payload],
+                isGoalsChecked: false,
+                isRedCardsChecked: false
+            };
         }
         case types.REMOVE_FAVORITE_PLAYER: {
             state.favoritePlayers.splice(action.payload, 1);
-            return {favoritePlayers: [...state.favoritePlayers]};
+            return {
+                favoritePlayers: [...state.favoritePlayers],
+                filteredFavoritePlayers: [...state.favoritePlayers],
+                isGoalsChecked: false,
+                isRedCardsChecked: false
+            };
         }
         case types.SORT_FAVORITE_PLAYERS: {
             if(state.isAToZ) {
                 state.favoritePlayers.reverse();
+                state.filteredFavoritePlayers.reverse();
                 return {...state, isAToZ: false};
             }
             else {
@@ -28,7 +39,78 @@ const favoritePlayers = (state = {favoritePlayers: [], isAToZ: false}, action) =
                     // names must be equal
                     return 0;
                 });
+                state.filteredFavoritePlayers.sort(function (playerA, playerB) {
+                    const nameA = playerA.player_name.toUpperCase(); // ignore upper and lowercase
+                    const nameB = playerB.player_name.toUpperCase(); // ignore upper and lowercase
+                    if (nameA < nameB) {
+                        return -1;
+                    }
+                    if (nameA > nameB) {
+                        return 1;
+                    }
+                    // names must be equal
+                    return 0;
+                });
                 return {...state, isAToZ: true};
+            }
+        }
+        case types.FILTER_FAVORITE_PLAYERS_BY_GOALS: {
+            if(state.isGoalsChecked) {
+                if(state.isRedCardsChecked) {
+                    let filteredPlayers = state.favoritePlayers.filter(player =>
+                        player.player_red_cards > 0
+                    );
+                    return {
+                        ...state,
+                        filteredFavoritePlayers: filteredPlayers,
+                        isRedCardsChecked: true,
+                        isGoalsChecked: false
+                    };
+                }
+                return {...state,
+                    filteredFavoritePlayers: [...state.favoritePlayers],
+                    isGoalsChecked: false,
+                    isRedCardsChecked: false
+                };
+            }
+            else {
+                let filteredPlayers = state.filteredFavoritePlayers.filter(player =>
+                    player.player_goals > 0
+                );
+                return {
+                    ...state,
+                    filteredFavoritePlayers: filteredPlayers,
+                    isGoalsChecked: true};
+            }
+        }
+        case types.FILTER_FAVORITE_PLAYERS_BY_RED_CARDS: {
+            if(state.isRedCardsChecked) {
+                if (state.isGoalsChecked) {
+                    let filteredPlayers = state.favoritePlayers.filter(player =>
+                        player.player_goals > 0
+                    );
+                    return {
+                        ...state,
+                        filteredFavoritePlayers: filteredPlayers,
+                        isGoalsChecked: true,
+                        isRedCardsChecked: false
+                    };
+                }
+                return {
+                    ...state,
+                    filteredFavoritePlayers: [...state.favoritePlayers],
+                    isRedCardsChecked: false,
+                    isGoalsChecked: false
+                };
+            }
+            else {
+                let filteredPlayers = state.filteredFavoritePlayers.filter(player =>
+                    player.player_red_cards > 0
+                );
+                return {
+                    ...state,
+                    filteredFavoritePlayers: filteredPlayers,
+                    isRedCardsChecked: true};
             }
         }
 

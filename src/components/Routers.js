@@ -9,6 +9,7 @@ import Player from "./Player";
 import FavoritePlayers from "./FavoritePlayers";
 import {setUserLogged} from "../redux/actions";
 import {connect} from "react-redux";
+import BootstrapTrainingHomePage from "./BootstrapTrainingHomePage";
 
 class Routers extends React.Component {
     getPage = () => {
@@ -40,16 +41,19 @@ class Routers extends React.Component {
 }
 
 const LoginLayout = props =>
-    <Login {...props}/>
+    <Login {...props}/>;
+
+// const HomeLayout = props =>
+//     <Home {...props}/>;
 
 const HomeLayout = props =>
-    <Home {...props}/>
+    <BootstrapTrainingHomePage {...props}/>;
 
 const SportsLayout = props =>
-    <Sports {...props}/>
+    <Sports {...props}/>;
 
 const CasinoLayout = props =>
-    <Casino {...props}/>
+    <Casino {...props}/>;
 
 const PlayerLayout = props => {
     return <Player {...props} />

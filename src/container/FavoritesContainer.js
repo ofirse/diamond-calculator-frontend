@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import {addFavoritePlayer, removeFavoritePlayer, sortFavoritePlayers } from '../redux/actions';
-import {Button, Modal, ModalHeader, ModalBody, ModalFooter, CardTitle} from 'reactstrap';
+import {addFavoritePlayer, removeFavoritePlayer, sortFavoritePlayers, filterFavoritePlayersByGoals, filterFavoritePlayersByRedCards } from '../redux/actions';
+import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 import Player from '../components/Player';
 
 import React from 'react';
@@ -11,6 +11,9 @@ class FavoritesContainer extends React.Component {
         this.state = {
             modalOpened: false,
             selectedPLayerName: '',
+            isSortSelected: false,
+            isGoalsSelected: false,
+            isRedCardsSelected: false,
         };
     }
 
@@ -29,7 +32,7 @@ class FavoritesContainer extends React.Component {
     }
 
     getPlayers = () => {
-        const playersList = this.props.favoritePlayers.favoritePlayers.map((player, index) =>
+        const playersList = this.props.favoritePlayers.filteredFavoritePlayers.map((player, index) =>
             <div key={index} className="d-flex justify-content-between border rounded py-1 px-3 mb-1 bg-white">
                 <div className="d-flex align-items-center">
                     <i className="fa fa-male mr-2"/>
@@ -54,9 +57,29 @@ class FavoritesContainer extends React.Component {
         return playersList;
     };
 
+    onSort = () => {
+      this.setState({isSortSelected: !this.state.isSortSelected});
+      this.props.sortFavoritePlayers();
+    };
+
+    onGoals = () => {
+        this.setState({isGoalsSelected: !this.state.isGoalsSelected});
+        this.props.filterFavoritePlayersByGoals();
+    };
+
+    onRedCard = () => {
+        this.setState({isRedCardsSelected: !this.state.isRedCardsSelected});
+        this.props.filterFavoritePlayersByRedCards();
+    };
+
     render = () =>
         <>
-            <button type="button" className="btn btn-primary btn-sm mb-3" disabled={this.props.favoritePlayers.favoritePlayers.length <= 0} onClick={this.props.sortFavoritePlayers}>Sort</button>
+            <button type="button" className={"btn btn-" + (this.state.isSortSelected ? 'link' : 'primary') + " btn-sm mr-3 mb-3"} disabled={this.props.favoritePlayers.favoritePlayers.length <= 0}
+                    onClick={this.onSort}>Sort</button>
+            <button type="button" className={"btn btn-" + (this.state.isGoalsSelected ? 'link' : 'primary') + " btn-sm mr-3 mb-3"} disabled={this.props.favoritePlayers.favoritePlayers.length <= 0}
+                    onClick={this.onGoals}>Goals</button>
+            <button type="button" className={"btn btn-" + (this.state.isRedCardsSelected ? 'link' : 'primary') + " btn-sm mr-3 mb-3"} disabled={this.props.favoritePlayers.favoritePlayers.length <= 0}
+                    onClick={this.onRedCard}>Red Cards</button>
             {this.getPlayers()}
             <Modal isOpen={this.state.modalOpened} toggle={this.toggleModal}>
                 <ModalHeader toggle={this.toggleModal} charCode="Y">Player Statistics</ModalHeader>
@@ -81,6 +104,8 @@ const mapDispatchToProps = (dispatch) => {
         addFavoritePlayer: (value) => dispatch(addFavoritePlayer(value)),
         removeFavoritePlayer: (value) => dispatch(removeFavoritePlayer(value)),
         sortFavoritePlayers: () => dispatch(sortFavoritePlayers()),
+        filterFavoritePlayersByGoals: () => dispatch(filterFavoritePlayersByGoals()),
+        filterFavoritePlayersByRedCards: () => dispatch(filterFavoritePlayersByRedCards()),
     };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(FavoritesContainer);

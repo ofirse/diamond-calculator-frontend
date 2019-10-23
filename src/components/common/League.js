@@ -115,7 +115,7 @@ export default class League extends React.Component {
                                aria-describedby="search-field"/>
                         <div className="input-group-append">
                             <span className="input-group-text" id="search-field">
-                                <i className="fa fa-search"></i>
+                                <i className="fa fa-search"/>
                             </span>
                         </div>
                     </div>

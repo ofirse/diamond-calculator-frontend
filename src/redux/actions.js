@@ -54,3 +54,15 @@ export function sortFavoritePlayers() {
         type: types.SORT_FAVORITE_PLAYERS,
     }
 };
+
+export function filterFavoritePlayersByGoals() {
+    return {
+        type: types.FILTER_FAVORITE_PLAYERS_BY_GOALS,
+    }
+};
+
+export function filterFavoritePlayersByRedCards() {
+    return {
+        type: types.FILTER_FAVORITE_PLAYERS_BY_RED_CARDS,
+    }
+};

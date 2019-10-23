@@ -4,7 +4,7 @@ $body-bg:                   #cdd8e4;
 $theme-colors: (
     "white":                #ffffff,
     "black":                #000000,
-    "primary":              #2574b4,
+    "primary": #1ba0b4,
     "secondary":            #5df24c,
     "warning":              #fadf00,
     "danger":               #f62b00,
@@ -27,4 +27,5 @@ $navbar-nav-link-padding-x:  1rem;
 $card-border-width:         1px;
 $card-border-color:         #c6d0dc;
 $card-border-radius:        0;
-$card-bg:                   #f1f1f1;
+$card-columns-margin:       0;
+$card-bg:                   white;

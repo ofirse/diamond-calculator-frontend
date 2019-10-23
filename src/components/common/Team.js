@@ -88,52 +88,54 @@ class Team extends React.Component {
         }
     };
 
-    //TODO
     onCheckGoals = () => {
+        let filteredPlayers;
         if(this.state.isGoalsChecked) {
-            this.setState({
-                isGoalsChecked: false,
-                filteredPlayers: this.props.players
-            });
+            this.setState({ isGoalsChecked: false });
+            filteredPlayers = this.props.players;
             if(this.state.isRedCardsChecked) {
-                this.filterByRedCards();
+                filteredPlayers = this.filterByRedCards(this.props.players);
             }
         }
         else {
-            this.filterByGoals();
+            filteredPlayers = this.filterByGoals(this.state.filteredPlayers);
         }
+
+        this.setState({ filteredPlayers });
     };
 
-    filterByGoals = () => {
-        const filteredPlayers = this.state.filteredPlayers.filter(player =>
+    filterByGoals = (players) => {
+        const filteredPlayers = players.filter(player =>
             player.player_goals > 0
         );
-        this.setState({ isGoalsChecked: true,
-            filteredPlayers});
+        this.setState({ isGoalsChecked: true });
+
+        return filteredPlayers;
     };
 
-    //TODO
     onCheckRedCards = () => {
+        let filteredPlayers;
         if(this.state.isRedCardsChecked) {
-            this.setState({
-                isRedCardsChecked: false,
-                filteredPlayers: this.props.players
-            });
+            this.setState({ isRedCardsChecked: false });
+            filteredPlayers = this.props.players;
             if(this.state.isGoalsChecked) {
-                this.filterByGoals();
+                filteredPlayers = this.filterByGoals( this.props.players);
             }
         }
         else {
-           this.filterByRedCards();
+            filteredPlayers = this.filterByRedCards(this.state.filteredPlayers);
         }
+
+        this.setState({ filteredPlayers });
     };
 
-    filterByRedCards = () => {
-        const filteredPlayers = this.state.filteredPlayers.filter(player =>
+    filterByRedCards = (players) => {
+        const filteredPlayers = players.filter(player =>
             player.player_red_cards > 0
         );
-        this.setState({ isRedCardsChecked: true,
-            filteredPlayers});
+        this.setState({ isRedCardsChecked: true});
+
+        return filteredPlayers;
     };
 
     render = () =>
