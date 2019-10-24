@@ -1,16 +1,18 @@
-$body-bg:                   #cdd8e4;
+$body-bg:                   #d4d5db;
 
 // Theme Colors Overrides
 $theme-colors: (
     "white":                #ffffff,
     "black":                #000000,
-    "primary": #1ba0b4,
+    "primary":              #1ba0b4,
     "secondary":            #5df24c,
     "warning":              #fadf00,
     "danger":               #f62b00,
-    "light":                #3f4f61,
+    "light": #d4d5db,
     "medium":               #344558,
     "dark":                 #263140,
+    "primaryMedium": #147d8e,
+    "primaryDark": #0b4650,
 );
 
 $grid-gutter-width:         12px;
@@ -24,8 +26,8 @@ $navbar-nav-link-padding-x:  1rem;
 
 
 // Card
-$card-border-width:         1px;
-$card-border-color:         #c6d0dc;
+$card-border-width:         5px;
+$card-border-color: #1ba0b4;
 $card-border-radius:        0;
 $card-columns-margin:       0;
 $card-bg:                   white;
