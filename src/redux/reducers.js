@@ -176,7 +176,7 @@ const playerData = (state = {
 const countries = (state = [], action) => {
     switch (action.type) {
         case types.SET_COUNTRIES: {
-            return [...state, action.payload];
+            return [...action.payload];
         }
         default:
             return state
