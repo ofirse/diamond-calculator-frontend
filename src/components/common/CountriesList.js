@@ -13,7 +13,7 @@ export default class CountriesList extends React.Component {
         }
     }
     componentDidMount = () => {
-        this.getCountries();
+        //this.getCountries();
     };
 
     getCountries = async () => {

@@ -47,7 +47,7 @@ const LoginLayout = props =>
 //     <Home {...props}/>;
 
 const HomeLayout = props =>
-    <BootstrapTrainingHomePage {...props}/>;
+    <Home {...props}/>;
 
 const SportsLayout = props =>
     <Sports {...props}/>;

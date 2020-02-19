@@ -1,4 +1,6 @@
 import types from './types';
+import axios from "axios";
+import constants from "../constants";
 
 export function addFavoritePlayer(player) {
     return {
@@ -66,3 +68,25 @@ export function filterFavoritePlayersByRedCards() {
         type: types.FILTER_FAVORITE_PLAYERS_BY_RED_CARDS,
     }
 };
+
+export const setCountries = countries => {
+    return {
+        type: types.SET_COUNTRIES,
+        payload: countries
+    }
+};
+
+export const getCountries = () => async dispatch =>{
+    try {
+        const response = await axios.get('https://apiv2.apifootball.com/', {
+            params: {
+                action: 'get_countries',
+                APIkey: constants.apiKey
+            }
+        });
+        //dispatch(setCountries(response.data));
+        console.log(response);
+    } catch (error) {
+        console.error(error);
+    }
+}
