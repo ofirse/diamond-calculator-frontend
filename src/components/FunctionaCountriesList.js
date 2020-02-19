@@ -17,14 +17,14 @@ const FunctionalCountriesList = props => {
         );
         return countriesList;
     };
-    dispatch(getCountries());
 
     useEffect(() => {
         console.log('component did mount')
+        dispatch(getCountries());
         return () => {
             //equivalent to componentDidUnmount
         }
-    });
+    }, []);
 
     return <div className={isLoading ? 'view-loader' : ''}>
         {getCountriesList()}

@@ -84,7 +84,7 @@ export const getCountries = () => async dispatch =>{
                 APIkey: constants.apiKey
             }
         });
-        //dispatch(setCountries(response.data));
+        dispatch(setCountries(response.data));
         console.log(response);
     } catch (error) {
         console.error(error);
