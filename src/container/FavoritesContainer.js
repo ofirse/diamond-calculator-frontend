@@ -4,13 +4,14 @@ import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 import Player from '../components/Player';
 
 import React from 'react';
+import FunctionalFavoritePlayer from "../components/FunctionalFavoritePlayer";
 
 class FavoritesContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             modalOpened: false,
-            selectedPLayerName: '',
+            selectedPlayerName: '',
             isSortSelected: false,
             isGoalsSelected: false,
             isRedCardsSelected: false,
@@ -23,39 +24,26 @@ class FavoritesContainer extends React.Component {
         });
     }
 
-    setSelectedPlayerName = selectedPLayerName => {
+    setSelectedPlayerName = selectedPlayerName => {
         this.setState({
             modalOpened: true,
-            selectedPLayerName
+            selectedPlayerName
         })
-        console.log('selected', selectedPLayerName)
+        console.log('selected', selectedPlayerName)
     }
 
     getPlayers = () => {
-        const playersList = this.props.favoritePlayers.filteredFavoritePlayers.map((player, index) =>
-            <div key={index} className="d-flex justify-content-between border rounded py-1 px-3 mb-1 bg-white">
-                <div className="d-flex align-items-center">
-                    <i className="fa fa-male mr-2"/>
-                    {player.player_name}
-                </div>
-                <div className="d-flex">
-                    <div className="mr-3">
-                        <i className="fa fa-signal mr-3" onClick={() => this.setSelectedPlayerName(player.player_name)}/>
-                        <i className="fa fa-futbol-o mr-2"/>
-                        {player.player_goals}
-                    </div>
-                    <div>
-                        <i className="fa fa-square red-cards mr-2"/>
-                        {player.player_red_cards}
-                    </div>
-                    <div>
-                        <i className="fa fa-ban remove-favorite-player ml-3" onClick={()=> this.props.removeFavoritePlayer(index)}/>
-                    </div>
-                </div>
-            </div>
-        );
+        const playersList = this.props.favoritePlayers.filteredFavoritePlayers.map((player, index) => {
+            return <FunctionalFavoritePlayer
+                key={index}
+                player={player}
+                index={index}
+                showPlayerDetails={()=>this.setSelectedPlayerName(player.player_name)}
+                // removeFavoritePlayer={()=> this.props.removeFavoritePlayer(index)}
+            />
+        });
         return playersList;
-    };
+    }; 
 
     onSort = () => {
       this.setState({isSortSelected: !this.state.isSortSelected});
@@ -84,7 +72,7 @@ class FavoritesContainer extends React.Component {
             <Modal isOpen={this.state.modalOpened} toggle={this.toggleModal}>
                 <ModalHeader toggle={this.toggleModal} charCode="Y">Player Statistics</ModalHeader>
                 <ModalBody>
-                    <Player playerName={this.state.selectedPLayerName}/>
+                    <Player playerName={this.state.selectedPlayerName}/>
                 </ModalBody>
                 <ModalFooter>
                     <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}

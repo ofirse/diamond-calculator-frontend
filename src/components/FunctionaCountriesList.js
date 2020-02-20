@@ -20,7 +20,9 @@ const FunctionalCountriesList = props => {
 
     useEffect(() => {
         console.log('component did mount')
-        dispatch(getCountries());
+        dispatch(getCountries(()=>{
+            setIsLoading(false);
+        }));
         return () => {
             //equivalent to componentDidUnmount
         }

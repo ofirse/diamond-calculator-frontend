@@ -76,7 +76,7 @@ export const setCountries = countries => {
     }
 };
 
-export const getCountries = () => async dispatch =>{
+export const getCountries = callback => async dispatch =>{
     try {
         const response = await axios.get('https://apiv2.apifootball.com/', {
             params: {
@@ -86,7 +86,9 @@ export const getCountries = () => async dispatch =>{
         });
         dispatch(setCountries(response.data));
         console.log(response);
+        callback();
     } catch (error) {
         console.error(error);
+        callback();
     }
 }
