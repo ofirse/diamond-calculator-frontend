@@ -90,7 +90,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         addFavoritePlayer: (value) => dispatch(addFavoritePlayer(value)),
-        removeFavoritePlayer: (value) => dispatch(removeFavoritePlayer(value)),
+        //removeFavoritePlayer: (value) => dispatch(removeFavoritePlayer(value)),
         sortFavoritePlayers: () => dispatch(sortFavoritePlayers()),
         filterFavoritePlayersByGoals: () => dispatch(filterFavoritePlayersByGoals()),
         filterFavoritePlayersByRedCards: () => dispatch(filterFavoritePlayersByRedCards()),

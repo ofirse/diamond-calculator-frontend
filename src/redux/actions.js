@@ -9,13 +9,6 @@ export function addFavoritePlayer(player) {
     }
 };
 
-export function removeFavoritePlayer(index) {
-    return {
-        type: types.REMOVE_FAVORITE_PLAYER,
-        payload: index
-    }
-};
-
 export function addFavoriteTeam(team) {
     return {
         type: types.ADD_FAVORITE_TEAM,
@@ -91,4 +84,11 @@ export const getCountries = callback => async dispatch =>{
         console.error(error);
         callback();
     }
-}
+};
+
+export const removeFavoritePlayer = index => {
+    return {
+        type: types.REMOVE_FAVORITE_PLAYER,
+        payload: index
+    }
+};
