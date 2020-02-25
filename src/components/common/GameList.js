@@ -9,10 +9,10 @@ export default class GameList extends React.Component {
     };
 
     getGamesList = () => {
-        console.log(this.props.games);
+        console.log("all games", this.props.games);
 
         const listItems = this.props.games.map((game, index) =>
-            <League key={index} isOpen={game.collapse} time={game.time} title={game.title}/>
+            <League key={index} isOpen={game.collapse} time={game.time} title={game.title} leagueId={game.leagueId}/>
         );
         return listItems
     };

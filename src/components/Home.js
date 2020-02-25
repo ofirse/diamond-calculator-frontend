@@ -1,13 +1,12 @@
 import React from 'react';
 import { Card, CardBody, CardTitle} from 'reactstrap';
-//import CountriesList from "./common/CountriesList";
 import FavoritesContainer from "../container/FavoritesContainer";
 import FavoriteTeamsContainer from "../container/FavoriteTeamsContainer";
 
 import FunctionalCountriesList from "./FunctionaCountriesList";
 
 
-export default class Home extends React.Component {
+export default class FunctionalSportsPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

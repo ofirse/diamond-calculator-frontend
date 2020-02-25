@@ -23,12 +23,14 @@ export default class Sports extends React.Component {
                         {
                             title: "CHAMPION LEAGUE",
                             time: "today",
-                            collapse: false
+                            collapse: false,
+                            leagueId: '1',
                         },
                         {
                             title: "CLUB FRIENDLY",
                             time: "tomorrow",
-                            collapse: false
+                            collapse: false,
+                            leagueId: '2',
                         }
                     ]
                 },
@@ -38,7 +40,8 @@ export default class Sports extends React.Component {
                         {
                             title: "WIMBLEDON CHAMPIONSHIP",
                             time: "7/8/19",
-                            collapse: false
+                            collapse: false,
+                            leagueId: '3',
                         }
                     ]
                 }

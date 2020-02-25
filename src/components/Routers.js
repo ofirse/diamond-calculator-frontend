@@ -2,8 +2,7 @@ import Header from "./Header";
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Login from "./Login";
-import Home from "./Home";
-import Sports from "./Sports";
+import FunctionalSportsPage from "./FunctionalSportsPage";
 import Casino from "./Casino";
 import Player from "./Player";
 import FavoritePlayers from "./FavoritePlayers";
@@ -47,7 +46,7 @@ const HomeLayout = props =>
     <BootstrapTrainingHomePage {...props}/>;
 
 const SportsLayout = props =>
-    <Sports {...props}/>;
+    <FunctionalSportsPage {...props}/>;
 
 const CasinoLayout = props =>
     <Casino {...props}/>;
