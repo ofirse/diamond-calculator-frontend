@@ -46,7 +46,7 @@ export default class Country extends React.Component {
     };
 
     toggle = () => {
-        console.log(this.props.countryId)
+        console.log(this.props.countryId);
         if (!this.state.isLoaded) {
             this.getLeagues();
         } else {
@@ -97,7 +97,7 @@ export default class Country extends React.Component {
                                aria-describedby="search-field"/>
                         <div className="input-group-append">
                             <span className="input-group-text" id="search-field">
-                                <i className="fa fa-search"></i>
+                                <i className="fa fa-search"/>
                             </span>
                         </div>
                     </div>

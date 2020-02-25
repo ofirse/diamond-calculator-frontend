@@ -10,34 +10,34 @@ import {setUserLogged} from "../redux/actions";
 import {connect} from "react-redux";
 import BootstrapTrainingHomePage from "./BootstrapTrainingHomePage";
 
-class Routers extends React.Component {
-    getPage = () => {
-        if(!this.props.userData.userLogged) {
+const Routers = props => {
+
+    const getPage = () => {
+        if(!props.userData.userLogged) {
             return (
-                <div>
+                <>
                     <Header/>
                     <Route path="/" exact component={HomeLayout} />
                     <Route path="/sports/" component={SportsLayout} />
                     <Route path="/casino/" component={CasinoLayout} />
-                    <Route path="/favoriteplayers/" component={FavoritePlayersLayout} />
+                    <Route path="/favoritePlayers/" component={FavoritePlayersLayout} />
                     <Route path="/player/:player_name" component={PlayerLayout}/>
-                </div>
+                </>
             );
         }
         else {
             return (
-                <div>
+                <>
                   <Route path="/*"  component={LoginLayout} />
-                </div>
+                </>
             );
         }
     };
 
-    render = () =>
-        <Router>
-            {this.getPage()}
+    return  <Router>
+            {getPage()}
         </Router>
-}
+};
 
 const LoginLayout = props =>
     <Login {...props}/>;
@@ -51,18 +51,18 @@ const SportsLayout = props =>
 const CasinoLayout = props =>
     <Casino {...props}/>;
 
-const PlayerLayout = props => {
-    return <Player {...props} />
-};
-const FavoritePlayersLayout = props => {
-    return <FavoritePlayers {...props} />
-};
+const PlayerLayout = props =>
+    <Player {...props} />;
+
+const FavoritePlayersLayout = props =>
+    <FavoritePlayers {...props} />;
 
 const mapStateToProps = (state) => {
     return {
         userData: state.userData
     };
 };
+
 const mapDispatchToProps = (dispatch) => {
     return {
         setUserLogged: (value) => dispatch(setUserLogged(value)),

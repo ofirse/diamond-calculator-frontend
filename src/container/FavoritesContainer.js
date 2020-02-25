@@ -39,7 +39,6 @@ class FavoritesContainer extends React.Component {
                 player={player}
                 index={index}
                 showPlayerDetails={()=>this.setSelectedPlayerName(player.player_name)}
-                // removeFavoritePlayer={()=> this.props.removeFavoritePlayer(index)}
             />
         });
         return playersList;
