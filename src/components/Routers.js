@@ -43,11 +43,8 @@ class Routers extends React.Component {
 const LoginLayout = props =>
     <Login {...props}/>;
 
-// const HomeLayout = props =>
-//     <Home {...props}/>;
-
 const HomeLayout = props =>
-    <Home {...props}/>;
+    <BootstrapTrainingHomePage {...props}/>;
 
 const SportsLayout = props =>
     <Sports {...props}/>;

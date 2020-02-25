@@ -36,7 +36,6 @@ export default class Home extends React.Component {
                             <FavoriteTeamsContainer/>
                         </CardBody>
                     </Card>
-
                 </div>
                 <div className="col-sm-8 mt-3 mt-md-0">
                     <Card>

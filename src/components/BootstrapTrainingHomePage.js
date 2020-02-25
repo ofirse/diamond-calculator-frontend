@@ -7,7 +7,7 @@ export default class BootstrapTrainingHomePage extends React.Component {
 render = () =>
    <div>
         <div>
-            <img src="https://www.babibet.com/mymedia/images/carousels/127/21955/en_EN/image.jpg" className="img-fluid" alt="Responsive image"/>
+            <img src="https://www.babibet.com/mymedia/images/carousels/127/21955/en_EN/image.jpg" className="img-fluid" alt="Responsive img"/>
         </div>
         <div className="container bg-light mb-5">
             <div className="row">

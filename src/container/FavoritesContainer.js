@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
-import {addFavoritePlayer, removeFavoritePlayer, sortFavoritePlayers, filterFavoritePlayersByGoals, filterFavoritePlayersByRedCards } from '../redux/actions';
+import {addFavoritePlayer, sortFavoritePlayers, filterFavoritePlayersByGoals, filterFavoritePlayersByRedCards } from '../redux/actions';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
-import Player from '../components/Player';
+import FunctionalPlayer from '../components/FunctionalPlayer';
 
 import React from 'react';
 import FunctionalFavoritePlayer from "../components/FunctionalFavoritePlayer";
@@ -22,15 +22,15 @@ class FavoritesContainer extends React.Component {
         this.setState( {
             modalOpened: !this.state.modalOpened
         });
-    }
+    };
 
     setSelectedPlayerName = selectedPlayerName => {
         this.setState({
             modalOpened: true,
             selectedPlayerName
-        })
+        });
         console.log('selected', selectedPlayerName)
-    }
+    };
 
     getPlayers = () => {
         const playersList = this.props.favoritePlayers.filteredFavoritePlayers.map((player, index) => {
@@ -72,11 +72,11 @@ class FavoritesContainer extends React.Component {
             <Modal isOpen={this.state.modalOpened} toggle={this.toggleModal}>
                 <ModalHeader toggle={this.toggleModal} charCode="Y">Player Statistics</ModalHeader>
                 <ModalBody>
-                    <Player playerName={this.state.selectedPlayerName}/>
+                    <FunctionalPlayer playerName={this.state.selectedPlayerName}/>
                 </ModalBody>
                 <ModalFooter>
                     <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
-                    <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+                    <Button color="secondary" onClick={this.toggleModal}>Cancel</Button>
                 </ModalFooter>
             </Modal>
         </>
@@ -90,7 +90,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         addFavoritePlayer: (value) => dispatch(addFavoritePlayer(value)),
-        //removeFavoritePlayer: (value) => dispatch(removeFavoritePlayer(value)),
         sortFavoritePlayers: () => dispatch(sortFavoritePlayers()),
         filterFavoritePlayersByGoals: () => dispatch(filterFavoritePlayersByGoals()),
         filterFavoritePlayersByRedCards: () => dispatch(filterFavoritePlayersByRedCards()),

@@ -46,7 +46,7 @@ export default class League extends React.Component {
     };
 
     toggle = () => {
-        console.log(this.props.leagueId)
+        console.log(this.props.leagueId);
         if(!this.state.isLoaded) {
             this.getTeams();
         }
@@ -62,6 +62,7 @@ export default class League extends React.Component {
             if(!this.state.filteredTeams[0].filteredPlayers) {
                 this.state.filteredTeams.map((team) => {
                     team.filteredPlayers = team.players;
+                    return null;
                 });
             }
 

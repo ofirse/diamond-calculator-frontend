@@ -2,9 +2,10 @@ import React from 'react';
 import axios from "axios";
 import constants from "../constants";
 import {setPlayerData} from "../redux/actions";
-import {connect} from "react-redux";
+import {connect } from "react-redux";
 import {Card, CardBody, CardTitle} from "reactstrap";
 import PropTypes from 'prop-types';
+import PlayerData from "./PlayerData";
 
 class Player extends React.Component {
     componentDidMount = () => {
@@ -29,31 +30,19 @@ class Player extends React.Component {
         }
     };
 
-    getPlayerData = () => {
-        const playerData = this.props.playerData;
-        return (
-            <div>
-                <p> Player Name: {playerData.playerName} </p>
-                <p> Player Number: {playerData.playerNumber} </p>
-                <p> Player Age: {playerData.playerAge} </p>
-                <p> Player Country: {playerData.playerCountry} </p>
-            </div>
-        );
-    };
-
     render = () =>
         <div className="container mt-5">
             <Card>
-                <CardTitle>Player Information {this.props.playerName}</CardTitle>
+                <CardTitle>Player Information</CardTitle>
                 <CardBody>
-                    {this.getPlayerData()}
+                    <PlayerData playerData={this.props.playerData}/>
                 </CardBody>
             </Card>
         </div>
 }
 
 Player.propTypes = {
-    playerName: PropTypes.string
+    selectedPlayerName: PropTypes.string
 };
 
 const mapStateToProps = state => {

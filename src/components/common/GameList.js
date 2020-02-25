@@ -9,6 +9,8 @@ export default class GameList extends React.Component {
     };
 
     getGamesList = () => {
+        console.log(this.props.games);
+
         const listItems = this.props.games.map((game, index) =>
             <League key={index} isOpen={game.collapse} time={game.time} title={game.title}/>
         );
@@ -17,7 +19,7 @@ export default class GameList extends React.Component {
 
     render = () =>
         <ul className="list-group mt-3">
-            {/*{this.getGamesList()}*/}
+            {this.getGamesList()}
         </ul>
 }
 

@@ -19,20 +19,18 @@ const FunctionalCountriesList = props => {
     };
 
     useEffect(() => {
-        console.log('component did mount')
+       // console.log('component did mount')
         dispatch(getCountries(()=>{
             setIsLoading(false);
         }));
         return () => {
             //equivalent to componentDidUnmount
         }
-    }, []);
+    }, [dispatch]);
 
     return <div className={isLoading ? 'view-loader' : ''}>
         {getCountriesList()}
     </div>
 };
-
-
 
 export default FunctionalCountriesList

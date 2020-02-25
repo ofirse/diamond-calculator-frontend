@@ -86,6 +86,24 @@ export const getCountries = callback => async dispatch =>{
     }
 };
 
+export const getPlayerStats = playerName => async dispatch => {
+    try {
+        const response = await axios.get('https://apiv2.apifootball.com/', {
+            params: {
+                action: 'get_players',
+                player_name: playerName ? playerName : this.props.match.params.player_name, // ?
+                APIkey: constants.apiKey
+            }
+        });
+
+        console.log(response);
+        dispatch(setPlayerData(response.data[0]));
+
+    } catch (error) {
+        console.error(error);
+    }
+};
+
 export const removeFavoritePlayer = index => {
     return {
         type: types.REMOVE_FAVORITE_PLAYER,
