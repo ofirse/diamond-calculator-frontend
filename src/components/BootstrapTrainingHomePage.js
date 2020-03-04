@@ -23,7 +23,7 @@ const BootstrapTrainingHomePage = props => {
             <MainCarousel/>
             {/*<img src="https://www.babibet.com/mymedia/images/carousels/127/21955/en_EN/image.jpg" className="img-fluid" alt="Responsive img"/>}*/}
         </div>
-        <div className="container bg-light my-5">
+        <div className="container bg-light">
             <div className="row">
                 <div className="col-md-4">
                     <Card className="border-top-0 border-right-0 border-left-0 col-sm h-100">
@@ -34,7 +34,7 @@ const BootstrapTrainingHomePage = props => {
                     </Card>
                 </div>
                 <div className="col-md-4">
-                    <Card className="border-top-0 border-right-0 border-left-0 border-primary-medium col-sm  h-100 ">
+                    <Card className="border-top-0 border-right-0 border-left-0 border-primary-medium col-sm h-100 ">
                         <CardTitle className="h5">SPORTS</CardTitle>
                         <CardBody className="d-flex flex-column">
                             Thousands of in-play and pre-match events with generous sport bonuses that ensure a great time!
@@ -56,8 +56,8 @@ const BootstrapTrainingHomePage = props => {
                     </Card>
                 </div>
             </div>
-            <PromotionsList/>
         </div>
+        <PromotionsList/>
         <Footer/>
    </>
 };

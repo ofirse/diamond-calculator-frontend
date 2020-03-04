@@ -57,7 +57,7 @@ const Footer = props => {
         );
     };
 
-    return <div className="page-footer bg-medium text-white mt-5">
+    return <div className="page-footer bg-medium text-white">
             <div className="container text-md-right">
                 <div className="row">
                     <div className="col-sm-2 mt-5">
