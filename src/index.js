@@ -5,7 +5,6 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import reducer from '../src/redux/reducers'
 import './assets/styles.scss';
-import 'font-awesome/css/font-awesome.min.css';
 
 import App from './App';
 import * as serviceWorker from './serviceWorker';

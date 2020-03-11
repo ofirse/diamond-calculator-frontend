@@ -1,9 +1,20 @@
+// Required
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
 @import './variables';
 @import '~bootstrap/scss/bootstrap';
+
 @import './card';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+
 @import './components/event-list';
 @import './components/loader';
 @import './components/collapse-loader';
 @import './components/favorite-players';
 @import './components/carousel';
 @import './components/promotions-list';
+@import './components/home';

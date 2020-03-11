@@ -1,3 +1,5 @@
+$fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
+
 $body-bg:                   #d4d5db;
 
 // Theme Colors Overrides
@@ -27,7 +29,7 @@ $navbar-nav-link-padding-x:  1rem;
 
 // Card
 $card-border-width:         5px;
-$card-border-color: #1ba0b4;
+$card-border-color:         darken(theme-color("light"), 2%);
 $card-border-radius:        0;
 $card-columns-margin:       0;
 $card-bg:                   white;

@@ -1,14 +1,32 @@
-#promotions-list {
+.promotions-list {
     background-color: theme-color("white");
     align-items: center;
 }
 
-#promotions {
-    margin-left: 23%;
-    margin-right: 15%;
+.promotions-container {
+  margin-left: 20%;
+ //   margin-right: 15%;
+
 }
 
-h3 {
+.h3 {
     text-align: center;
-   padding-top: 1.5rem;
+   padding-top: 0.5rem;
+    padding-bottom: 2.5rem;
+    font-weight: bolder;
+    text-transform: uppercase;
+}
+
+.promotion-line {
+    border: 1px solid theme-color("primary");
+    width: 70px;
+    margin-top: 3%;
+}
+
+#promotion-icon {
+    color: theme-color("primary");
+}
+
+.promotion-card {
+    border: none;
 }
