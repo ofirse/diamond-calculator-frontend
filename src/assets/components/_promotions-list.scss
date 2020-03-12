@@ -1,12 +1,17 @@
 .promotions-list {
     background-color: theme-color("white");
     align-items: center;
+    padding-bottom: 5rem;
+    padding-top: 3rem;
+    @include media-breakpoint-up(sm) {
+            padding-bottom: 10rem;
+    }
 }
 
-.promotions-container {
-  margin-left: 20%;
- //   margin-right: 15%;
-
+.promotion-title {
+    text-transform: uppercase;
+    font-size: large;
+    color: lighten(theme-color("medium"), 2%);
 }
 
 .h3 {
@@ -15,6 +20,7 @@
     padding-bottom: 2.5rem;
     font-weight: bolder;
     text-transform: uppercase;
+    font-size: 2rem;
 }
 
 .promotion-line {
@@ -23,10 +29,32 @@
     margin-top: 3%;
 }
 
-#promotion-icon {
+.promotion-icon {
     color: theme-color("primary");
+    min-width: 75px;
 }
 
-.promotion-card {
-    border: none;
+.promotion-title {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bolder;
+    margin-bottom: .5rem;
+}
+
+.promotion-body {
+    color: #8c8c8d;
+    font-size: large;
+}
+
+//.promotions-container {
+//    margin-top: 5rem;
+//    @include media-breakpoint-up(sm) {
+//        margin-top: 1.5rem;
+//    }
+//}
+
+.promotion {
+    margin-top: 1.5rem;
+    @include media-breakpoint-up(sm) {
+        margin-top: 5rem;
+    }
 }
