@@ -1,5 +1,4 @@
 import React from 'react';
-import {Card, CardBody, CardTitle} from 'reactstrap';
 
 const Promotion = props => {
     return <div className="promotion d-flex">

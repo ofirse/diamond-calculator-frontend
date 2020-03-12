@@ -9,6 +9,7 @@ import FavoritePlayers from "./FavoritePlayers";
 import {setUserLogged} from "../redux/actions";
 import {connect} from "react-redux";
 import BootstrapTrainingHomePage from "./BootstrapTrainingHomePage";
+import PromotionsPage from "./PromotionsPage";
 
 const Routers = props => {
 
@@ -22,6 +23,7 @@ const Routers = props => {
                     <Route path="/casino/" component={CasinoLayout} />
                     <Route path="/favoritePlayers/" component={FavoritePlayersLayout} />
                     <Route path="/player/:player_name" component={PlayerLayout}/>
+                    <Route path="/promotionsPage/" component={PromotionsLayout}/>
                 </>
             );
         }
@@ -56,6 +58,9 @@ const PlayerLayout = props =>
 
 const FavoritePlayersLayout = props =>
     <FavoritePlayers {...props} />;
+
+const PromotionsLayout = props =>
+    <PromotionsPage {...props}/>;
 
 const mapStateToProps = (state) => {
     return {

@@ -28,6 +28,9 @@ const Header = props => {
                             <NavItem>
                                 <NavLink exact tag={RRNavLink} to="/favoritePlayers">Favorite Players</NavLink>
                             </NavItem>
+                            <NavItem>
+                                <NavLink exact tag={RRNavLink} to="/promotionsPage">Promotions</NavLink>
+                            </NavItem>
                         </Nav>
                     </Collapse>
                 </div>

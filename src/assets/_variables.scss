@@ -13,8 +13,9 @@ $theme-colors: (
     "light":                #d4d5db,
     "medium":               #344558,
     "dark":                 #263140,
-    "primary-medium":        #147d8e,
-    "primary-dark":          #0b4650,
+    "primary-medium":       #147d8e,
+    "primary-dark":         #0b4650,
+        "grey":             darken(theme-color("light"), 5%),
 );
 
 $grid-gutter-width:         12px;

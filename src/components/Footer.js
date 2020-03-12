@@ -60,18 +60,18 @@ const Footer = props => {
     return <div className="page-footer bg-medium text-white">
             <div className="container text-md-right">
                 <div className="row">
-                    <div className="col-sm-2 mt-5">
+                    <div className="col-sm-2 mt-5 justify-content-md-start justify-content-center d-flex">
                         <Logo width="166px"/>
                     </div>
-                    <div className="col-sm-3 mt-5">
+                    <div className="col-sm-3 mt-5 text-center text-md-right">
                         <h5 className="text-uppercase mb-3">SERVICES</h5>
                         {getServices()}
                     </div>
-                    <div className="col-sm-3 mt-5">
+                    <div className="col-sm-3 mt-5 text-center text-md-right">
                         <h5 className="text-uppercase mb-3">INFORMATION</h5>
                         {getInformation()}
                     </div>
-                    <div className="col-sm-3 mt-5">
+                    <div className="col-sm-3 mt-5 text-center text-md-right">
                         <h5 className="text-uppercase mb-3">PLAY NOW</h5>
                         {getPlayNow()}
                     </div>

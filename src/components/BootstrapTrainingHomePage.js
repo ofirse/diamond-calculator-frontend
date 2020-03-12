@@ -16,13 +16,11 @@ const BootstrapTrainingHomePage = props => {
             </ul>
         );
     };
-    //TODO
-    // Create bootstrap (Reactstrap) carousel here instead of the image
+
     return <>
         <div className={"carousel-wrapper"}>
             <div className={"container"}>
                 <MainCarousel/>
-                {/*<img src="https://www.babibet.com/mymedia/images/carousels/127/21955/en_EN/image.jpg" className="img-fluid" alt="Responsive img"/>}*/}
             </div>
         </div>
 
