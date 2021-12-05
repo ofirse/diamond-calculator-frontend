@@ -3,7 +3,7 @@ import {Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink} fro
 import { ReactComponent as Logo } from '../assets/img/logo.svg';
 import {NavLink as RRNavLink} from 'react-router-dom';
 
-const Header = props => {
+const Header = () => {
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -17,19 +17,7 @@ const Header = props => {
                     <Collapse isOpen={isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
-                                <NavLink exact tag={RRNavLink} to="/">Home</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink exact tag={RRNavLink} to="/sports">Sports</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink exact tag={RRNavLink} to="/casino">Casino</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink exact tag={RRNavLink} to="/favoritePlayers">Favorite Players</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink exact tag={RRNavLink} to="/promotionsPage">Promotions</NavLink>
+                                <NavLink exact tag={RRNavLink} to="/">Price Calculator</NavLink>
                             </NavItem>
                         </Nav>
                     </Collapse>

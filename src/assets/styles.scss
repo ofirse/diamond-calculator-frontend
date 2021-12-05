@@ -6,16 +6,11 @@
 @import './variables';
 @import '~bootstrap/scss/bootstrap';
 
-@import './card';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import '~@fortawesome/fontawesome-free/scss/solid';
 @import '~@fortawesome/fontawesome-free/scss/regular';
 
-@import './components/event-list';
 @import './components/loader';
-@import './components/collapse-loader';
-@import './components/favorite-players';
-@import './components/carousel';
-@import './components/promotions-list';
-@import './components/promotions-page';
 @import './components/home';
+@import './components/calculator';
+@import './components/card';

@@ -1,8 +1,0 @@
-.remove-favorite-player {
-    cursor: pointer;
-    color: theme-color("primary");
-    font-size: 1.5rem !important;
-    &:hover {
-      color: lighten(theme-color("primary"), 5%);
-    }
-}
